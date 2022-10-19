@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8741ED2900458900F93C34 /* AppsSearchController.swift */; };
 		5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94828FEFA01009CE3D0 /* AppDelegate.swift */; };
 		5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94A28FEFA01009CE3D0 /* SceneDelegate.swift */; };
 		5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94C28FEFA01009CE3D0 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E8741ED2900458900F93C34 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		5ED7A94528FEFA01009CE3D0 /* AppStoreJSONAPIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSONAPIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED7A94828FEFA01009CE3D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ED7A94A28FEFA01009CE3D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E8741EC2900452E00F93C34 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */,
+				5E8741ED2900458900F93C34 /* AppsSearchController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		5ED7A93C28FEFA01009CE3D0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +69,10 @@
 		5ED7A94728FEFA01009CE3D0 /* AppStoreJSONAPIs */ = {
 			isa = PBXGroup;
 			children = (
+				5E8741EC2900452E00F93C34 /* Controller */,
 				5ED7A94828FEFA01009CE3D0 /* AppDelegate.swift */,
 				5ED7A94A28FEFA01009CE3D0 /* SceneDelegate.swift */,
 				5ED7A94C28FEFA01009CE3D0 /* ViewController.swift */,
-				5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */,
 				5ED7A94E28FEFA01009CE3D0 /* Main.storyboard */,
 				5ED7A95128FEFA02009CE3D0 /* Assets.xcassets */,
 				5ED7A95328FEFA02009CE3D0 /* LaunchScreen.storyboard */,
@@ -144,6 +155,7 @@
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
 				5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */,
 				5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */,
+				5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */,
 				5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
