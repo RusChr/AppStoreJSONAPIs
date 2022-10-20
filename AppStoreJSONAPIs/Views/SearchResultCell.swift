@@ -20,13 +20,13 @@ class SearchResultCell: UICollectionViewCell {
 	
 	let nameLabel: UILabel = {
 		let label = UILabel()
-		label.text = "App Name"
+		label.text = "AppName"
 		return label
 	}()
 	
 	let categoryLabel: UILabel = {
 		let label = UILabel()
-		label.text = "Photos & Video"
+		label.text = "Photos&Video"
 		return label
 	}()
 	
