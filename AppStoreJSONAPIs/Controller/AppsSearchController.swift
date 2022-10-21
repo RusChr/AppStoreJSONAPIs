@@ -8,10 +8,13 @@
 import UIKit
 import SDWebImage
 
-class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 	
 	fileprivate let cellId = "id1234"
 	fileprivate var appResults = [Result]()
+	fileprivate let searchController = UISearchController(searchResultsController: nil)
+	
+	var timer: Timer?
 	
 	
 	override func viewDidLoad() {
@@ -20,12 +23,33 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 		collectionView.backgroundColor = .white
 		collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
 		
+		setupSearchBar()
 		fetchITunesApps()
 	}
 	
 	
-	fileprivate func fetchITunesApps() {
-		Service.shared.fetchApps { [weak self] (result, err) in
+	fileprivate func setupSearchBar() {
+		definesPresentationContext = true
+		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.delegate = self
+	}
+	
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		timer?.invalidate()
+		
+		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+			DispatchQueue.main.async {
+				self.fetchITunesApps(searchTerm: searchText)
+			}
+		})
+	}
+	
+	
+	fileprivate func fetchITunesApps(searchTerm: String = "instagram") {
+		Service.shared.fetchApps(searchTerm: searchTerm) { [weak self] (result, err) in
 			guard let self = self else { return }
 			
 			if let err = err {
