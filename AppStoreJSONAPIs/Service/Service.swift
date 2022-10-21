@@ -31,6 +31,7 @@ class Service {
 			do {
 				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
 				completion(searchResult.results, nil)
+				print("Fetching itunes apps from Service layer")
 				
 			} catch let jsonErr {
 				completion([], jsonErr)

@@ -56,7 +56,7 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 		
 		cell.nameLabel.text = appResult.trackName
 		cell.categoryLabel.text = appResult.primaryGenreName
-		cell.ratingsLabel.text = "\(String(describing: appResult.averageUserRating ?? 0))"
+		cell.ratingsLabel.text = String(format: "%.2f", appResult.averageUserRating ?? 0)
 		
 		return cell
 	}

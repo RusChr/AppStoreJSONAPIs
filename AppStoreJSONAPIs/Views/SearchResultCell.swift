@@ -26,13 +26,13 @@ class SearchResultCell: UICollectionViewCell {
 	
 	let categoryLabel: UILabel = {
 		let label = UILabel()
-		label.text = "Photos&Video"
+		label.text = "CategoryName"
 		return label
 	}()
 	
 	let ratingsLabel: UILabel = {
 		let label = UILabel()
-		label.text = "9.26M"
+		label.text = "9.99"
 		return label
 	}()
 	
