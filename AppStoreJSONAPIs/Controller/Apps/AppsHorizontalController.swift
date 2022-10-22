@@ -19,8 +19,6 @@ class AppsHorizontalController: BaseListController, UICollectionViewDelegateFlow
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		collectionView.backgroundColor = .white
-		
 		collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: cellId)
 		
 		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {

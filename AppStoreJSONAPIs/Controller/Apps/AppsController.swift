@@ -15,8 +15,6 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		collectionView.backgroundColor = .white
-		
 		collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
 	}
 	

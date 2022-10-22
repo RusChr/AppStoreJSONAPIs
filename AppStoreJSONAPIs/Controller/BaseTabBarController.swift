@@ -26,9 +26,7 @@ class BaseTabBarController: UITabBarController {
 		navController.tabBarItem.title = title
 		navController.tabBarItem.image = UIImage(named: imageName)
 		navController.navigationBar.prefersLargeTitles = true
-		navController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 		
-		viewController.view.backgroundColor = .white
 		viewController.navigationItem.title = title
 		
 		return navController

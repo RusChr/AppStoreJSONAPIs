@@ -32,6 +32,8 @@ class SearchResultCell: UICollectionViewCell {
 		let iv = UIImageView()
 		iv.constrainWidth(constant: 64)
 		iv.constrainHeight(constant: 64)
+		iv.layer.borderWidth = 0.5
+		iv.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
 		iv.layer.cornerRadius = 12
 		iv.clipsToBounds = true
 		return iv

@@ -28,8 +28,6 @@ class AppsSearchController: BaseListController, UICollectionViewDelegateFlowLayo
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		
-		collectionView.backgroundColor = .white
 		collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
 		
 		collectionView.addSubview(enterSearchTermLabel)

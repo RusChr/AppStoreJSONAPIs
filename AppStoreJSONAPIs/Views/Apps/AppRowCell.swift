@@ -9,7 +9,7 @@ import UIKit
 
 class AppRowCell: UICollectionViewCell {
 	
-	let imageView = UIImageView(cornerRadius: 8)
+	let appIconImageView = UIImageView(cornerRadius: 8)
 	
 	let nameLabel = UILabel(text: "AppName", font: .systemFont(ofSize: 20))
 	let companyLabel = UILabel(text: "CompanyName", font: .systemFont(ofSize: 13))
@@ -20,9 +20,11 @@ class AppRowCell: UICollectionViewCell {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		imageView.backgroundColor = .purple
-		imageView.constrainWidth(constant: 64)
-		imageView.constrainHeight(constant: 64)
+		appIconImageView.backgroundColor = .purple
+		appIconImageView.layer.borderWidth = 0.5
+		appIconImageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+		appIconImageView.constrainWidth(constant: 64)
+		appIconImageView.constrainHeight(constant: 64)
 		
 		getButton.backgroundColor = UIColor(white: 0.95, alpha: 1)
 		getButton.setTitleColor(.systemBlue, for: .normal)
@@ -32,7 +34,7 @@ class AppRowCell: UICollectionViewCell {
 		getButton.layer.cornerRadius = 16
 		
 		let stackView = UIStackView(arrangedSubviews: [
-			imageView,
+			appIconImageView,
 			VerticalStackView(arrangedSubviews: [
 				nameLabel, companyLabel
 			], spacing: 4),

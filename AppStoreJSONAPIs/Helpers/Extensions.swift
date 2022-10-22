@@ -12,7 +12,6 @@ extension UILabel {
 		self.init(frame: .zero)
 		self.text = text
 		self.font = font
-		self.textColor = .black
 	}
 }
 
