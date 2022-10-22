@@ -14,6 +14,14 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 	fileprivate var appResults = [Result]()
 	fileprivate let searchController = UISearchController(searchResultsController: nil)
 	
+	fileprivate let enterSearchTermLabel: UILabel = {
+		let label = UILabel()
+		label.text = "Enter search term above..."
+		label.textAlignment = .center
+		label.font = UIFont.boldSystemFont(ofSize: 20)
+		return label
+	}()
+	
 	var timer: Timer?
 	
 	
@@ -23,8 +31,11 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 		collectionView.backgroundColor = .white
 		collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
 		
+		collectionView.addSubview(enterSearchTermLabel)
+		enterSearchTermLabel.fillSuperview(padding: .init(top: 200, left: 16, bottom: 0, right: 16))
+		
 		setupSearchBar()
-		fetchITunesApps()
+		//fetchITunesApps()
 	}
 	
 	
@@ -40,7 +51,7 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		timer?.invalidate()
 		
-		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in
+		timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
 			DispatchQueue.main.async {
 				self.fetchITunesApps(searchTerm: searchText)
 			}
@@ -71,6 +82,7 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		enterSearchTermLabel.isHidden = appResults.count != 0
 		return appResults.count
 	}
 	
