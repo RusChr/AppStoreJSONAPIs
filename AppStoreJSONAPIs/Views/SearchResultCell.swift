@@ -79,7 +79,6 @@ class SearchResultCell: UICollectionViewCell {
 		imageView.layer.cornerRadius = 8
 		imageView.clipsToBounds = true
 		imageView.contentMode = .scaleAspectFit
-		
 		return imageView
 	}
 	

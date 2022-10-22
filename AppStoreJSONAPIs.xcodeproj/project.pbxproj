@@ -14,6 +14,11 @@
 		5E8741F92901797000F93C34 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8741F82901797000F93C34 /* SearchResult.swift */; };
 		5E8741FC290187C200F93C34 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8741FB290187C200F93C34 /* Service.swift */; };
 		5E8741FF2902AD3C00F93C34 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5E8741FE2902AD3C00F93C34 /* SDWebImage */; };
+		5E87420229041B9700F93C34 /* AppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87420129041B9700F93C34 /* AppsController.swift */; };
+		5E87420429041CEC00F93C34 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87420329041CEC00F93C34 /* BaseListController.swift */; };
+		5E87420829041F9800F93C34 /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87420729041F9800F93C34 /* AppsGroupCell.swift */; };
+		5E87420A2904237800F93C34 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8742092904237800F93C34 /* UILabel+Extension.swift */; };
+		5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87420B2904281900F93C34 /* AppsHorizontalController.swift */; };
 		5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94828FEFA01009CE3D0 /* AppDelegate.swift */; };
 		5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94A28FEFA01009CE3D0 /* SceneDelegate.swift */; };
 		5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A94C28FEFA01009CE3D0 /* ViewController.swift */; };
@@ -30,6 +35,11 @@
 		5E8741F529015BD000F93C34 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		5E8741F82901797000F93C34 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		5E8741FB290187C200F93C34 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		5E87420129041B9700F93C34 /* AppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsController.swift; sourceTree = "<group>"; };
+		5E87420329041CEC00F93C34 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
+		5E87420729041F9800F93C34 /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
+		5E8742092904237800F93C34 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		5E87420B2904281900F93C34 /* AppsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalController.swift; sourceTree = "<group>"; };
 		5ED7A94528FEFA01009CE3D0 /* AppStoreJSONAPIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSONAPIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED7A94828FEFA01009CE3D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ED7A94A28FEFA01009CE3D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,8 +66,10 @@
 		5E8741EC2900452E00F93C34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5E87420029041B5B00F93C34 /* Apps */,
+				5E87420529041DBF00F93C34 /* Search */,
 				5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */,
-				5E8741ED2900458900F93C34 /* AppsSearchController.swift */,
+				5E87420329041CEC00F93C34 /* BaseListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -65,6 +77,7 @@
 		5E8741EF29004BDF00F93C34 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E87420629041F8400F93C34 /* Apps */,
 				5E8741F029004C0A00F93C34 /* SearchResultCell.swift */,
 			);
 			path = Views;
@@ -75,6 +88,7 @@
 			children = (
 				5E8741F32901336900F93C34 /* 05_UIView+Layout.swift */,
 				5E8741F529015BD000F93C34 /* VerticalStackView.swift */,
+				5E8742092904237800F93C34 /* UILabel+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -93,6 +107,31 @@
 				5E8741FB290187C200F93C34 /* Service.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5E87420029041B5B00F93C34 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				5E87420129041B9700F93C34 /* AppsController.swift */,
+				5E87420B2904281900F93C34 /* AppsHorizontalController.swift */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		5E87420529041DBF00F93C34 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5E8741ED2900458900F93C34 /* AppsSearchController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5E87420629041F8400F93C34 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				5E87420729041F9800F93C34 /* AppsGroupCell.swift */,
+			);
+			path = Apps;
 			sourceTree = "<group>";
 		};
 		5ED7A93C28FEFA01009CE3D0 = {
@@ -208,14 +247,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E8741F42901336900F93C34 /* 05_UIView+Layout.swift in Sources */,
+				5E87420229041B9700F93C34 /* AppsController.swift in Sources */,
 				5E8741F92901797000F93C34 /* SearchResult.swift in Sources */,
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
 				5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */,
 				5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */,
+				5E87420829041F9800F93C34 /* AppsGroupCell.swift in Sources */,
+				5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */,
 				5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */,
 				5E8741F629015BD000F93C34 /* VerticalStackView.swift in Sources */,
 				5E8741FC290187C200F93C34 /* Service.swift in Sources */,
+				5E87420A2904237800F93C34 /* UILabel+Extension.swift in Sources */,
 				5E8741F129004C0A00F93C34 /* SearchResultCell.swift in Sources */,
+				5E87420429041CEC00F93C34 /* BaseListController.swift in Sources */,
 				5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

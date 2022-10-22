@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AppsSearchController: BaseListController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 	
 	fileprivate let cellId = "id1234"
 	fileprivate var appResults = [Result]()
@@ -18,7 +18,7 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 		let label = UILabel()
 		label.text = "Enter search term above..."
 		label.textAlignment = .center
-		label.font = UIFont.boldSystemFont(ofSize: 20)
+		label.font = UIFont.systemFont(ofSize: 20)
 		return label
 	}()
 	
@@ -28,11 +28,13 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		
 		collectionView.backgroundColor = .white
 		collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
 		
 		collectionView.addSubview(enterSearchTermLabel)
-		enterSearchTermLabel.fillSuperview(padding: .init(top: 200, left: 16, bottom: 0, right: 16))
+		enterSearchTermLabel.centerXInSuperview()
+		enterSearchTermLabel.fillSuperview(padding: .init(top: 200, left: 0, bottom: 0, right: 0))
 		
 		setupSearchBar()
 		//fetchITunesApps()
@@ -94,13 +96,4 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
 		return cell
 	}
 	
-	
-	init() {
-		super.init(collectionViewLayout: UICollectionViewFlowLayout())
-	}
-	
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
 }
