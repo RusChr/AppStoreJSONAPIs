@@ -18,6 +18,20 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 		
 		collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
 		collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+		
+		fetchData()
+	}
+	
+	
+    fileprivate	func fetchData() {
+		Service.shared.fetchTopFreeApps { appGroup, err in
+			if let err {
+				print("Failed to fetch top apps:", err)
+				return
+			}
+			
+			print(appGroup?.feed.results)
+		}
 	}
 	
 	

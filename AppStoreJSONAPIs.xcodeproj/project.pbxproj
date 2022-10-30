@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C347E290EB29E00A70879 /* AppGroup.swift */; };
 		5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05929068A9E00C3576D /* AppsPageHeader.swift */; };
 		5E38B05C29068E8C00C3576D /* AppsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05B29068E8C00C3576D /* AppsHeaderHorizontalController.swift */; };
 		5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05D2906E5E500C3576D /* AppsHeaderCell.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E2C347E290EB29E00A70879 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		5E38B05929068A9E00C3576D /* AppsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeader.swift; sourceTree = "<group>"; };
 		5E38B05B29068E8C00C3576D /* AppsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderHorizontalController.swift; sourceTree = "<group>"; };
 		5E38B05D2906E5E500C3576D /* AppsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderCell.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				5E8741F82901797000F93C34 /* SearchResult.swift */,
+				5E2C347E290EB29E00A70879 /* AppGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				5E8741F629015BD000F93C34 /* VerticalStackView.swift in Sources */,
 				5E8741FC290187C200F93C34 /* Service.swift in Sources */,
 				5E87420A2904237800F93C34 /* Extensions.swift in Sources */,
+				5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */,
 				5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */,
 				5E8741F129004C0A00F93C34 /* SearchResultCell.swift in Sources */,
 				5E87420429041CEC00F93C34 /* BaseListController.swift in Sources */,

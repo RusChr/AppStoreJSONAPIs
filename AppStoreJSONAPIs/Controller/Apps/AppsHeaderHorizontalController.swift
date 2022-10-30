@@ -11,6 +11,8 @@ class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelega
 	
 	fileprivate let cellId = "cellId"
 	
+	let leftRightPadding: CGFloat = 16
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,12 +26,12 @@ class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelega
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return .init(width: view.frame.width - 48, height: view.frame.height)
+		return .init(width: view.frame.width - (leftRightPadding * 3), height: view.frame.height)
 	}
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return .init(top: 0, left: 16, bottom: 0, right: 16)
+		return .init(top: 0, left: leftRightPadding, bottom: 0, right: leftRightPadding)
 	}
 	
 	
