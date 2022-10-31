@@ -41,7 +41,8 @@ class Service {
 	
 	
 	func fetchTopFreeApps(completion: @escaping (AppGroup?, Error?) -> Void) {
-		let urlString = "https://rss.applemarketingtools.com/api/v2/ru/apps/top-free/50/apps.json"
+		//let urlString = "https://rss.applemarketingtools.com/api/v2/ru/apps/top-free/50/apps.json"
+		let urlString = "https://rss.applemarketingtools.com/api/v2/ru/apps/top-paid/10/apps.json"
 		guard let url = URL(string: urlString) else { return }
 		
 		URLSession.shared.dataTask(with: url) { data, resp, err in

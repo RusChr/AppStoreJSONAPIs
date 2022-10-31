@@ -12,6 +12,8 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	fileprivate let cellId = "cellId"
 	fileprivate let headerId = "headerId"
 	
+	var topApps: AppGroup?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,13 +26,19 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
     fileprivate	func fetchData() {
-		Service.shared.fetchTopFreeApps { appGroup, err in
+		Service.shared.fetchTopFreeApps { [weak self] appGroup, err in
+			guard let self = self else { return }
+			
 			if let err {
 				print("Failed to fetch top apps:", err)
 				return
 			}
 			
-			print(appGroup?.feed.results)
+			self.topApps = appGroup
+			
+			DispatchQueue.main.async {
+				self.collectionView.reloadData()
+			}
 		}
 	}
 	
@@ -48,12 +56,16 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 5
+		return 1
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
+		
+		cell.titleLabel.text = topApps?.feed.title
+		cell.horizontalController.appGroup = topApps
+		cell.horizontalController.collectionView.reloadData()
 		
 		return cell
 	}
@@ -65,7 +77,7 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-		return .init(top: 16, left: 0, bottom: 0, right: 0)
+		return .init(top: 48, left: 0, bottom: 0, right: 0)
 	}
 	
 }
