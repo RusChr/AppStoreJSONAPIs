@@ -12,7 +12,7 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	fileprivate let cellId = "cellId"
 	fileprivate let headerId = "headerId"
 	
-	var topApps: AppGroup?
+	var groups = [AppGroup]()
 	
 	
 	override func viewDidLoad() {
@@ -26,19 +26,33 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
     fileprivate	func fetchData() {
-		Service.shared.fetchTopFreeApps { [weak self] appGroup, err in
+		var group1: AppGroup?
+		var group2: AppGroup?
+		
+		// help you sync your data fetches together
+		let dispatchGroup = DispatchGroup()
+		
+		dispatchGroup.enter()
+		Service.shared.fetchTopFreeApps { appGroup, err in
+			dispatchGroup.leave()
+			group1 = appGroup
+		}
+		dispatchGroup.enter()
+		Service.shared.fetchTopPaidApps { appGroup, err in
+			dispatchGroup.leave()
+			group2 = appGroup
+		}
+		
+		// completion
+		dispatchGroup.notify(queue: .main) { [weak self] in
 			guard let self = self else { return }
-			
-			if let err {
-				print("Failed to fetch top apps:", err)
-				return
+			if let group1 {
+				self.groups.append(group1)
 			}
-			
-			self.topApps = appGroup
-			
-			DispatchQueue.main.async {
-				self.collectionView.reloadData()
+			if let group2 {
+				self.groups.append(group2)
 			}
+			self.collectionView.reloadData()
 		}
 	}
 	
@@ -56,15 +70,16 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 1
+		return groups.count
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsGroupCell
+		let group = groups[indexPath.item]
 		
-		cell.titleLabel.text = topApps?.feed.title
-		cell.horizontalController.appGroup = topApps
+		cell.titleLabel.text = group.feed.title
+		cell.horizontalController.appGroup = group
 		cell.horizontalController.collectionView.reloadData()
 		
 		return cell
