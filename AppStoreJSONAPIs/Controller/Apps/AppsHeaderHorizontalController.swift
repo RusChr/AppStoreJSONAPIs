@@ -11,6 +11,8 @@ class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelega
 	
 	fileprivate let cellId = "cellId"
 	
+	var socialApps = [SocialApp]()
+	
 	let leftRightPadding: CGFloat = 16
 	
 	
@@ -36,12 +38,17 @@ class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelega
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 3
+		return socialApps.count
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsHeaderCell
+		let socialApp = socialApps[indexPath.item]
+		
+		cell.companyLabel.text = socialApp.name
+		cell.titleLabel.text = socialApp.tagline
+		cell.imageView.sd_setImage(with: URL(string: socialApp.imageUrl))
 		
 		return cell
 	}

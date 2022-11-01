@@ -12,11 +12,24 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	fileprivate let cellId = "cellId"
 	fileprivate let headerId = "headerId"
 	
+	var socialApps = [SocialApp]()
 	var groups = [AppGroup]()
+	
+	let activityIndicatorView: UIActivityIndicatorView = {
+		let aiv = UIActivityIndicatorView(style: .large)
+		aiv.color = .black
+		aiv.startAnimating()
+		aiv.hidesWhenStopped = true
+		
+		return aiv
+	}()
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		view.addSubview(activityIndicatorView)
+		activityIndicatorView.centerInSuperview()
 		
 		collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
 		collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
@@ -43,9 +56,19 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 			group2 = appGroup
 		}
 		
+		dispatchGroup.enter()
+		Service.shared.fetchSocialApps { [weak self] apps, err in
+			dispatchGroup.leave()
+			guard let self = self else { return }
+			self.socialApps = apps ?? []
+		}
+		
 		// completion
 		dispatchGroup.notify(queue: .main) { [weak self] in
 			guard let self = self else { return }
+			
+			self.activityIndicatorView.stopAnimating()
+			
 			if let group1 {
 				self.groups.append(group1)
 			}
@@ -58,7 +81,9 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! AppsPageHeader
+		header.appHeaderHorizontalController.socialApps = socialApps
+		header.appHeaderHorizontalController.collectionView.reloadData()
 		
 		return header
 	}

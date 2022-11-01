@@ -41,14 +41,14 @@ class Service {
 	
 	
 	func fetchTopFreeApps(completion: @escaping (AppGroup?, Error?) -> Void) {
-		let urlString = "https://rss.applemarketingtools.com/api/v2/ru/apps/top-free/50/apps.json"
+		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
 		
 		fetchAppGroup(urlString: urlString, completion: completion)
 	}
 	
 	
 	func fetchTopPaidApps(completion: @escaping (AppGroup?, Error?) -> Void) {
-		let urlString = "https://rss.applemarketingtools.com/api/v2/ru/apps/top-paid/10/apps.json"
+		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
 		
 		fetchAppGroup(urlString: urlString, completion: completion)
 	}
@@ -68,6 +68,30 @@ class Service {
 			do {
 				let appGroupResult = try JSONDecoder().decode(AppGroup.self, from: data)
 				completion(appGroupResult, nil)
+			} catch let jsonErr {
+				completion(nil, jsonErr)
+			}
+			
+		}.resume()
+	}
+	
+	
+	func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
+		let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+		
+		guard let url = URL(string: urlString) else { return }
+		
+		URLSession.shared.dataTask(with: url) { data, resp, err in
+			if let err = err {
+				completion(nil, err)
+				return
+			}
+			
+			guard let data = data else { return }
+			
+			do {
+				let objects = try JSONDecoder().decode([SocialApp].self, from: data)
+				completion(objects, nil)
 			} catch let jsonErr {
 				completion(nil, jsonErr)
 			}

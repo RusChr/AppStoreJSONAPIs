@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C347E290EB29E00A70879 /* AppGroup.swift */; };
+		5E2C3481291006C800A70879 /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C3480291006C800A70879 /* SocialApp.swift */; };
 		5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05929068A9E00C3576D /* AppsPageHeader.swift */; };
 		5E38B05C29068E8C00C3576D /* AppsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05B29068E8C00C3576D /* AppsHeaderHorizontalController.swift */; };
 		5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05D2906E5E500C3576D /* AppsHeaderCell.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		5E2C347E290EB29E00A70879 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		5E2C3480291006C800A70879 /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
 		5E38B05929068A9E00C3576D /* AppsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeader.swift; sourceTree = "<group>"; };
 		5E38B05B29068E8C00C3576D /* AppsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderHorizontalController.swift; sourceTree = "<group>"; };
 		5E38B05D2906E5E500C3576D /* AppsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderCell.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				5E8741F82901797000F93C34 /* SearchResult.swift */,
 				5E2C347E290EB29E00A70879 /* AppGroup.swift */,
+				5E2C3480291006C800A70879 /* SocialApp.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E8741F42901336900F93C34 /* 05_UIView+Layout.swift in Sources */,
+				5E2C3481291006C800A70879 /* SocialApp.swift in Sources */,
 				5E87420229041B9700F93C34 /* AppsPageController.swift in Sources */,
 				5E8741F92901797000F93C34 /* SearchResult.swift in Sources */,
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
