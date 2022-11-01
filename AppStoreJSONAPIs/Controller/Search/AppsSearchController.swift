@@ -67,7 +67,7 @@ class AppsSearchController: BaseListController, UICollectionViewDelegateFlowLayo
 				print("Failed to fetch apps:", err)
 			}
 			
-			self.appResults = result
+			self.appResults = result?.results ?? []
 			
 			DispatchQueue.main.async {
 				self.collectionView.reloadData()

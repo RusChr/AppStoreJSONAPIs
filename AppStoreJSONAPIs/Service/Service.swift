@@ -15,28 +15,32 @@ class Service {
 	private init() {}
 	
 	
-	func fetchApps(searchTerm: String, completion: @escaping ([Result], Error?) -> Void) {
-		let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
+	func fetchJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
 		guard let url = URL(string: urlString) else { return }
-
+		
 		URLSession.shared.dataTask(with: url) { data, resp, err in
 			if let err = err {
-				print("Failed to fetch apps:", err)
-				completion([], nil)
+				completion(nil, err)
 				return
 			}
-
+			
 			guard let data = data else { return }
-
+			
 			do {
-				let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-				print("Fetching itunes apps from Service layer")
-				completion(searchResult.results, nil)
+				let objects = try JSONDecoder().decode(T.self, from: data)
+				completion(objects, nil)
 			} catch let jsonErr {
-				completion([], jsonErr)
+				completion(nil, jsonErr)
 			}
-
+			
 		}.resume()
+	}
+	
+	
+	func fetchApps(searchTerm: String, completion: @escaping (SearchResult?, Error?) -> Void) {
+		let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
+		
+		fetchJSONData(urlString: urlString, completion: completion)
 	}
 	
 	
@@ -55,48 +59,15 @@ class Service {
 	
 	
 	func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
-		guard let url = URL(string: urlString) else { return }
-		
-		URLSession.shared.dataTask(with: url) { data, resp, err in
-			if let err = err {
-				completion(nil, err)
-				return
-			}
-			
-			guard let data = data else { return }
-			
-			do {
-				let appGroupResult = try JSONDecoder().decode(AppGroup.self, from: data)
-				completion(appGroupResult, nil)
-			} catch let jsonErr {
-				completion(nil, jsonErr)
-			}
-			
-		}.resume()
+		fetchJSONData(urlString: urlString, completion: completion)
 	}
 	
 	
 	func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
 		let urlString = "https://api.letsbuildthatapp.com/appstore/social"
 		
-		guard let url = URL(string: urlString) else { return }
-		
-		URLSession.shared.dataTask(with: url) { data, resp, err in
-			if let err = err {
-				completion(nil, err)
-				return
-			}
-			
-			guard let data = data else { return }
-			
-			do {
-				let objects = try JSONDecoder().decode([SocialApp].self, from: data)
-				completion(objects, nil)
-			} catch let jsonErr {
-				completion(nil, jsonErr)
-			}
-			
-		}.resume()
+		fetchJSONData(urlString: urlString, completion: completion)
 	}
+
 }
 
