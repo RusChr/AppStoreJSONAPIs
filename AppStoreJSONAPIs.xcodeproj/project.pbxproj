@@ -34,6 +34,7 @@
 		5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */; };
 		5ED9714C291282D0004D82FB /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9714B291282D0004D82FB /* HorizontalSnappingController.swift */; };
 		5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9714D29129F35004D82FB /* BetterSnappingLayout.swift */; };
+		5ED971512912B9C7004D82FB /* AppDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971502912B9C7004D82FB /* AppDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		5ED9714B291282D0004D82FB /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		5ED9714D29129F35004D82FB /* BetterSnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSnappingLayout.swift; sourceTree = "<group>"; };
+		5ED971502912B9C7004D82FB /* AppDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		5E87420029041B5B00F93C34 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				5ED9714F2912B9AA004D82FB /* Details */,
 				5E87420129041B9700F93C34 /* AppsPageController.swift */,
 				5E87420B2904281900F93C34 /* AppsHorizontalController.swift */,
 				5E38B05B29068E8C00C3576D /* AppsHeaderHorizontalController.swift */,
@@ -191,6 +194,14 @@
 				5ED7A95628FEFA02009CE3D0 /* Info.plist */,
 			);
 			path = AppStoreJSONAPIs;
+			sourceTree = "<group>";
+		};
+		5ED9714F2912B9AA004D82FB /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				5ED971502912B9C7004D82FB /* AppDetailController.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +293,7 @@
 				5ED9714C291282D0004D82FB /* HorizontalSnappingController.swift in Sources */,
 				5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */,
 				5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */,
+				5ED971512912B9C7004D82FB /* AppDetailController.swift in Sources */,
 				5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */,
 				5E38B05C29068E8C00C3576D /* AppsHeaderHorizontalController.swift in Sources */,
 				5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */,
