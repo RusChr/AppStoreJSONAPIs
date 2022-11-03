@@ -39,6 +39,9 @@
 		5ED971562913C307004D82FB /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971552913C307004D82FB /* PreviewCell.swift */; };
 		5ED971582913D366004D82FB /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */; };
 		5ED9715A2913D7F9004D82FB /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971592913D7F9004D82FB /* ScreenshotCell.swift */; };
+		5ED9715C2913FC98004D82FB /* ReviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715B2913FC98004D82FB /* ReviewRowCell.swift */; };
+		5ED9715E291405D6004D82FB /* ReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715D291405D6004D82FB /* ReviewsController.swift */; };
+		5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715F29140DD0004D82FB /* ReviewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,9 @@
 		5ED971552913C307004D82FB /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
 		5ED971592913D7F9004D82FB /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
+		5ED9715B2913FC98004D82FB /* ReviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowCell.swift; sourceTree = "<group>"; };
+		5ED9715D291405D6004D82FB /* ReviewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsController.swift; sourceTree = "<group>"; };
+		5ED9715F29140DD0004D82FB /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,7 @@
 			children = (
 				5ED971502912B9C7004D82FB /* AppDetailController.swift */,
 				5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */,
+				5ED9715D291405D6004D82FB /* ReviewsController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -220,6 +227,8 @@
 				5ED971532912C81F004D82FB /* AppDetailCell.swift */,
 				5ED971552913C307004D82FB /* PreviewCell.swift */,
 				5ED971592913D7F9004D82FB /* ScreenshotCell.swift */,
+				5ED9715B2913FC98004D82FB /* ReviewRowCell.swift */,
+				5ED9715F29140DD0004D82FB /* ReviewCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -306,9 +315,11 @@
 				5E87420229041B9700F93C34 /* AppsPageController.swift in Sources */,
 				5E8741F92901797000F93C34 /* SearchResult.swift in Sources */,
 				5ED971582913D366004D82FB /* PreviewScreenshotsController.swift in Sources */,
+				5ED9715C2913FC98004D82FB /* ReviewRowCell.swift in Sources */,
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
 				5E87420E2904350500F93C34 /* AppRowCell.swift in Sources */,
 				5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */,
+				5ED9715E291405D6004D82FB /* ReviewsController.swift in Sources */,
 				5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */,
 				5E87420829041F9800F93C34 /* AppsGroupCell.swift in Sources */,
 				5ED9714C291282D0004D82FB /* HorizontalSnappingController.swift in Sources */,
@@ -321,6 +332,7 @@
 				5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */,
 				5E8741F629015BD000F93C34 /* VerticalStackView.swift in Sources */,
 				5E8741FC290187C200F93C34 /* Service.swift in Sources */,
+				5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */,
 				5E87420A2904237800F93C34 /* Extensions.swift in Sources */,
 				5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */,
 				5ED971542912C81F004D82FB /* AppDetailCell.swift in Sources */,
