@@ -11,17 +11,28 @@ class AppDetailCell: UICollectionViewCell {
 	
 	let appIconImageView = UIImageView(cornerRadius: 16)
 	
-	let nameLabel = UILabel(text: "App name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
+	let nameLabel = UILabel(text: "App name", font: .boldSystemFont(ofSize: 22), numberOfLines: 3)
 	let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
-	let releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
+	var releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
 	
 	let priceButton = UIButton(title: "$4.99")
+	
+	var app: Result! {
+		didSet {
+			nameLabel.text = app?.trackName
+			releaseNotesLabel.text = app?.releaseNotes
+			appIconImageView.sd_setImage(with: URL(string: app?.artworkUrl100 ?? ""))
+			priceButton.setTitle(app?.formattedPrice, for: .normal)
+		}
+	}
 	
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
 		appIconImageView.backgroundColor = .systemOrange
+		appIconImageView.layer.borderWidth = 0.5
+		appIconImageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
 		appIconImageView.constrainWidth(constant: 140)
 		appIconImageView.constrainHeight(constant: 140)
 		
@@ -47,6 +58,7 @@ class AppDetailCell: UICollectionViewCell {
 			whatsNewLabel,
 			releaseNotesLabel
 		], spacing: 16)
+		
 		addSubview(stackView)
 		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
 	}
