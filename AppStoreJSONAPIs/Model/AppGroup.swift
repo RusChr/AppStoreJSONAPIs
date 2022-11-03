@@ -17,6 +17,7 @@ struct Feed: Decodable {
 }
 
 struct FeedResult: Decodable {
+	let id: String
 	let artistName: String
 	let name: String
 	let artworkUrl100: String

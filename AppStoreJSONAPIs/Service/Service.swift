@@ -45,14 +45,14 @@ class Service {
 	
 	
 	func fetchTopFreeApps(completion: @escaping (AppGroup?, Error?) -> Void) {
-		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
+		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/10/apps.json"
 		
 		fetchAppGroup(urlString: urlString, completion: completion)
 	}
 	
 	
 	func fetchTopPaidApps(completion: @escaping (AppGroup?, Error?) -> Void) {
-		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
+		let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/10/apps.json"
 		
 		fetchAppGroup(urlString: urlString, completion: completion)
 	}
