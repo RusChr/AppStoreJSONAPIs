@@ -10,6 +10,7 @@ import UIKit
 class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
 	fileprivate let detailCellId = "detailCellId"
+	fileprivate let previewCellId = "previewCellId"
 	
 	var app: Result?
 	
@@ -32,34 +33,38 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
 		navigationItem.largeTitleDisplayMode = .never
 		
 		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detailCellId)
+		collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewCellId)
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 1
+		return 2
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! AppDetailCell
+		let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! AppDetailCell
+		let previewCell = collectionView.dequeueReusableCell(withReuseIdentifier: previewCellId, for: indexPath) as! PreviewCell
 		
-		cell.app = app
+		detailCell.app = app
+		previewCell.horizontalController.app = app
 		
-		return cell
+		return indexPath.item == 0 ? detailCell : previewCell
 	}
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		
-		// calculate the nessesery size for our cell
-		let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
-		
-		dummyCell.app = app
-		dummyCell.layoutIfNeeded()
-		
-		let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
-		//
-		
-		return .init(width: view.frame.width, height: estimatedSize.height)
+		if indexPath.item == 0 {
+			// calculate the nessesery size for our cell
+			let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
+			dummyCell.app = app
+			dummyCell.layoutIfNeeded()
+			
+			let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
+			//
+			return .init(width: view.frame.width, height: estimatedSize.height)
+		} else {
+			return .init(width: view.frame.width, height: 500)
+		}
 	}
 }

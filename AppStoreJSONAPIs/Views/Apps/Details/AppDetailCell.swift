@@ -12,8 +12,8 @@ class AppDetailCell: UICollectionViewCell {
 	let appIconImageView = UIImageView(cornerRadius: 16)
 	
 	let nameLabel = UILabel(text: "App name", font: .boldSystemFont(ofSize: 22), numberOfLines: 3)
-	let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
-	var releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
+	let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 22))
+	var releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 18), numberOfLines: 0)
 	
 	let priceButton = UIButton(title: "$4.99")
 	
@@ -57,7 +57,7 @@ class AppDetailCell: UICollectionViewCell {
 			], customSpacing: 20),
 			whatsNewLabel,
 			releaseNotesLabel
-		], spacing: 16)
+		], spacing: 20)
 		
 		addSubview(stackView)
 		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))

@@ -36,6 +36,9 @@
 		5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9714D29129F35004D82FB /* BetterSnappingLayout.swift */; };
 		5ED971512912B9C7004D82FB /* AppDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971502912B9C7004D82FB /* AppDetailController.swift */; };
 		5ED971542912C81F004D82FB /* AppDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971532912C81F004D82FB /* AppDetailCell.swift */; };
+		5ED971562913C307004D82FB /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971552913C307004D82FB /* PreviewCell.swift */; };
+		5ED971582913D366004D82FB /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */; };
+		5ED9715A2913D7F9004D82FB /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971592913D7F9004D82FB /* ScreenshotCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,9 @@
 		5ED9714D29129F35004D82FB /* BetterSnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSnappingLayout.swift; sourceTree = "<group>"; };
 		5ED971502912B9C7004D82FB /* AppDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailController.swift; sourceTree = "<group>"; };
 		5ED971532912C81F004D82FB /* AppDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailCell.swift; sourceTree = "<group>"; };
+		5ED971552913C307004D82FB /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
+		5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
+		5ED971592913D7F9004D82FB /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				5ED971502912B9C7004D82FB /* AppDetailController.swift */,
+				5ED971572913D366004D82FB /* PreviewScreenshotsController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -211,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				5ED971532912C81F004D82FB /* AppDetailCell.swift */,
+				5ED971552913C307004D82FB /* PreviewCell.swift */,
+				5ED971592913D7F9004D82FB /* ScreenshotCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -296,6 +305,7 @@
 				5E2C3481291006C800A70879 /* SocialApp.swift in Sources */,
 				5E87420229041B9700F93C34 /* AppsPageController.swift in Sources */,
 				5E8741F92901797000F93C34 /* SearchResult.swift in Sources */,
+				5ED971582913D366004D82FB /* PreviewScreenshotsController.swift in Sources */,
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
 				5E87420E2904350500F93C34 /* AppRowCell.swift in Sources */,
 				5ED7A94D28FEFA01009CE3D0 /* ViewController.swift in Sources */,
@@ -304,6 +314,7 @@
 				5ED9714C291282D0004D82FB /* HorizontalSnappingController.swift in Sources */,
 				5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */,
 				5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */,
+				5ED9715A2913D7F9004D82FB /* ScreenshotCell.swift in Sources */,
 				5ED971512912B9C7004D82FB /* AppDetailController.swift in Sources */,
 				5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */,
 				5E38B05C29068E8C00C3576D /* AppsHeaderHorizontalController.swift in Sources */,
@@ -314,6 +325,7 @@
 				5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */,
 				5ED971542912C81F004D82FB /* AppDetailCell.swift in Sources */,
 				5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */,
+				5ED971562913C307004D82FB /* PreviewCell.swift in Sources */,
 				5E8741F129004C0A00F93C34 /* SearchResultCell.swift in Sources */,
 				5E87420429041CEC00F93C34 /* BaseListController.swift in Sources */,
 				5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */,
