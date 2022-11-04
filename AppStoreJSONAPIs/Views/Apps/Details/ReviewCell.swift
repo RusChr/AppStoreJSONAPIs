@@ -11,8 +11,8 @@ class ReviewCell: UICollectionViewCell {
 	
 	let titleLabel = UILabel(text: "Review Title", font: .boldSystemFont(ofSize: 16))
 	let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
-	let starsLabel = UILabel(text: "Stars", font: .systemFont(ofSize: 16))
-	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 16), numberOfLines: 0)
+	let starsLabel = UILabel(text: "0", font: .systemFont(ofSize: 18))
+	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 9)
 	
 	
 	override init(frame: CGRect) {
@@ -22,23 +22,24 @@ class ReviewCell: UICollectionViewCell {
 		layer.cornerRadius = 16
 		clipsToBounds = true
 		
-		authorLabel.textColor = .darkGray
-		
 		let stackView = VerticalStackView(arrangedSubviews: [
 			UIStackView(arrangedSubviews: [
 				titleLabel,
 				authorLabel
 			], customSpacing: 16),
 			starsLabel,
-			bodyLabel,
-			UIView()
+			bodyLabel
 		], spacing: 12)
 		
+		starsLabel.textColor = .systemOrange
+		
+		authorLabel.textColor = .darkGray
 		authorLabel.textAlignment = .right
+		
 		titleLabel.setContentCompressionResistancePriority(.init(0), for: .horizontal)
 		
 		addSubview(stackView)
-		stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+		stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20))
 	}
 	
 	
