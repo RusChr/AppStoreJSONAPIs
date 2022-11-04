@@ -42,6 +42,7 @@
 		5ED9715C2913FC98004D82FB /* ReviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715B2913FC98004D82FB /* ReviewRowCell.swift */; };
 		5ED9715E291405D6004D82FB /* ReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715D291405D6004D82FB /* ReviewsController.swift */; };
 		5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715F29140DD0004D82FB /* ReviewCell.swift */; };
+		5ED9716229150204004D82FB /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716129150204004D82FB /* Reviews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		5ED9715B2913FC98004D82FB /* ReviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowCell.swift; sourceTree = "<group>"; };
 		5ED9715D291405D6004D82FB /* ReviewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsController.swift; sourceTree = "<group>"; };
 		5ED9715F29140DD0004D82FB /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		5ED9716129150204004D82FB /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				5E8741F82901797000F93C34 /* SearchResult.swift */,
 				5E2C347E290EB29E00A70879 /* AppGroup.swift */,
 				5E2C3480291006C800A70879 /* SocialApp.swift */,
+				5ED9716129150204004D82FB /* Reviews.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				5ED7A94928FEFA01009CE3D0 /* AppDelegate.swift in Sources */,
 				5E87420829041F9800F93C34 /* AppsGroupCell.swift in Sources */,
 				5ED9714C291282D0004D82FB /* HorizontalSnappingController.swift in Sources */,
+				5ED9716229150204004D82FB /* Reviews.swift in Sources */,
 				5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */,
 				5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */,
 				5ED9715A2913D7F9004D82FB /* ScreenshotCell.swift in Sources */,

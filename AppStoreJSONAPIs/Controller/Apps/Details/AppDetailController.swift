@@ -14,12 +14,25 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
 	fileprivate let reviewCellId = "reviewCellId"
 	
 	var app: Result?
+	var reviews: Reviews?
 	
 	var appId: String! {
 		didSet {
 			let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
 			Service.shared.fetchJSONData(urlString: urlString) { [weak self] (result: SearchResult?, err) in
 				self?.app = result?.results.first
+				DispatchQueue.main.async {
+					self?.collectionView.reloadData()
+				}
+			}
+			
+			let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId ?? "")/sortby=mostrecent/json?l=en&cc=us"
+			Service.shared.fetchJSONData(urlString: reviewsUrl) { [weak self] (reviews: Reviews?, err) in
+				if let err {
+					print("Failed to decode reviews:", err)
+					return
+				}
+				self?.reviews = reviews
 				DispatchQueue.main.async {
 					self?.collectionView.reloadData()
 				}
@@ -51,6 +64,7 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
 		
 		detailCell.app = app
 		previewCell.horizontalController.app = app
+		reviewCell.reviewsController.reviews = reviews
 		
 		switch indexPath.item {
 		case 0:
