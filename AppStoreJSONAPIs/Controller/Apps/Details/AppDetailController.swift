@@ -9,9 +9,9 @@ import UIKit
 
 class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
-	fileprivate let detailCellId = "detailCellId"
+	fileprivate let appDetailCellId = "appDetailCellId"
 	fileprivate let previewCellId = "previewCellId"
-	fileprivate let reviewCellId = "reviewCellId"
+	fileprivate let reviewRowCellId = "reviewRowCellId"
 	
 	var app: Result?
 	var reviews: Reviews?
@@ -46,9 +46,9 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
 		
 		navigationItem.largeTitleDisplayMode = .never
 		
-		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detailCellId)
+		collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: appDetailCellId)
 		collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewCellId)
-		collectionView.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewCellId)
+		collectionView.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewRowCellId)
 	}
 	
 	
@@ -58,9 +58,9 @@ class AppDetailController: BaseListController, UICollectionViewDelegateFlowLayou
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! AppDetailCell
+		let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: appDetailCellId, for: indexPath) as! AppDetailCell
 		let previewCell = collectionView.dequeueReusableCell(withReuseIdentifier: previewCellId, for: indexPath) as! PreviewCell
-		let reviewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath) as! ReviewRowCell
+		let reviewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewRowCellId, for: indexPath) as! ReviewRowCell
 		
 		detailCell.app = app
 		previewCell.horizontalController.app = app

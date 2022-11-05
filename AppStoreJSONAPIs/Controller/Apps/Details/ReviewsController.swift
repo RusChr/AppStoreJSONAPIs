@@ -44,6 +44,7 @@ class ReviewsController: HorizontalSnappingController, UICollectionViewDelegateF
 			let arr = Array(repeating: "★", count: rating) + Array(repeating: "☆", count: maxRating - rating)
 			cell.starsLabel.text = arr.joined()
 		}
+		
 		return cell
 	}
 	
