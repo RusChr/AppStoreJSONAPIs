@@ -11,8 +11,11 @@ class ReviewsController: HorizontalSnappingController, UICollectionViewDelegateF
 	
 	fileprivate let cellId = "cellId"
 	
+	var entries = [Entry?]()
+	
 	var reviews: Reviews? {
 		didSet {
+			entries = entries + (reviews?.feed.entry ?? [])
 			collectionView.reloadData()
 		}
 	}
@@ -27,13 +30,13 @@ class ReviewsController: HorizontalSnappingController, UICollectionViewDelegateF
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return reviews?.feed.entry.count ?? 0
+		return entries.count
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ReviewCell
-		let review = reviews?.feed.entry[indexPath.item]
+		let review = entries[indexPath.item]
 		
 		cell.titleLabel.text = review?.title.label
 		cell.authorLabel.text = review?.author.name.label

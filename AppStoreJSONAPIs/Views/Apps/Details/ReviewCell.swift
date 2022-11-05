@@ -12,7 +12,7 @@ class ReviewCell: UICollectionViewCell {
 	let titleLabel = UILabel(text: "Review Title", font: .boldSystemFont(ofSize: 16))
 	let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
 	let starsLabel = UILabel(text: "0", font: .systemFont(ofSize: 18))
-	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 9)
+	let bodyLabel = UILabel(text: "Review body\nReview body\nReview body", font: .systemFont(ofSize: 14), numberOfLines: 8)
 	
 	
 	override init(frame: CGRect) {

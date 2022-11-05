@@ -30,11 +30,6 @@ class AppsHeaderHorizontalController: HorizontalSnappingController, UICollection
 	}
 	
 	
-//	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//		return .init(top: 0, left: leftRightPadding, bottom: 0, right: leftRightPadding)
-//	}
-	
-	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return socialApps.count
 	}
