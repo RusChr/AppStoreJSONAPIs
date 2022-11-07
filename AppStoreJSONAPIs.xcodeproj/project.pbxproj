@@ -43,6 +43,8 @@
 		5ED9715E291405D6004D82FB /* ReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715D291405D6004D82FB /* ReviewsController.swift */; };
 		5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9715F29140DD0004D82FB /* ReviewCell.swift */; };
 		5ED9716229150204004D82FB /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716129150204004D82FB /* Reviews.swift */; };
+		5ED971652918EDB3004D82FB /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971642918EDB3004D82FB /* TodayController.swift */; };
+		5ED971692918EF04004D82FB /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971682918EF04004D82FB /* TodayCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		5ED9715D291405D6004D82FB /* ReviewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsController.swift; sourceTree = "<group>"; };
 		5ED9715F29140DD0004D82FB /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		5ED9716129150204004D82FB /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		5ED971642918EDB3004D82FB /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
+		5ED971682918EF04004D82FB /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		5E8741EC2900452E00F93C34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5ED971632918ED71004D82FB /* Today */,
 				5E87420529041DBF00F93C34 /* Search */,
 				5E87420029041B5B00F93C34 /* Apps */,
 				5ED7A95C28FEFD68009CE3D0 /* BaseTabBarController.swift */,
@@ -112,8 +117,9 @@
 		5E8741EF29004BDF00F93C34 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5ED971662918EED2004D82FB /* Today */,
 				5E87420629041F8400F93C34 /* Apps */,
-				5E8741F029004C0A00F93C34 /* SearchResultCell.swift */,
+				5ED971672918EEE1004D82FB /* Search */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +242,30 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		5ED971632918ED71004D82FB /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				5ED971642918EDB3004D82FB /* TodayController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		5ED971662918EED2004D82FB /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				5ED971682918EF04004D82FB /* TodayCell.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		5ED971672918EEE1004D82FB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5E8741F029004C0A00F93C34 /* SearchResultCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +348,7 @@
 				5E87420229041B9700F93C34 /* AppsPageController.swift in Sources */,
 				5E8741F92901797000F93C34 /* SearchResult.swift in Sources */,
 				5ED971582913D366004D82FB /* PreviewScreenshotsController.swift in Sources */,
+				5ED971652918EDB3004D82FB /* TodayController.swift in Sources */,
 				5ED9715C2913FC98004D82FB /* ReviewRowCell.swift in Sources */,
 				5ED7A95D28FEFD68009CE3D0 /* BaseTabBarController.swift in Sources */,
 				5E87420E2904350500F93C34 /* AppRowCell.swift in Sources */,
@@ -339,6 +370,7 @@
 				5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */,
 				5E87420A2904237800F93C34 /* Extensions.swift in Sources */,
 				5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */,
+				5ED971692918EF04004D82FB /* TodayCell.swift in Sources */,
 				5ED971542912C81F004D82FB /* AppDetailCell.swift in Sources */,
 				5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */,
 				5ED971562913C307004D82FB /* PreviewCell.swift in Sources */,
