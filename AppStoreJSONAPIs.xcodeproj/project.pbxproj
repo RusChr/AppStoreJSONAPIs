@@ -47,6 +47,7 @@
 		5ED971692918EF04004D82FB /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED971682918EF04004D82FB /* TodayCell.swift */; };
 		5ED9716B291906FD004D82FB /* AppFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716A291906FD004D82FB /* AppFullscreenController.swift */; };
 		5ED9716D291933B1004D82FB /* AppFullscreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716C291933B1004D82FB /* AppFullscreenDescriptionCell.swift */; };
+		5ED9716F29195311004D82FB /* AppFullscreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		5ED971682918EF04004D82FB /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		5ED9716A291906FD004D82FB /* AppFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenController.swift; sourceTree = "<group>"; };
 		5ED9716C291933B1004D82FB /* AppFullscreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenDescriptionCell.swift; sourceTree = "<group>"; };
+		5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 			children = (
 				5ED971682918EF04004D82FB /* TodayCell.swift */,
 				5ED9716C291933B1004D82FB /* AppFullscreenDescriptionCell.swift */,
+				5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */,
 				5ED971692918EF04004D82FB /* TodayCell.swift in Sources */,
 				5ED9716D291933B1004D82FB /* AppFullscreenDescriptionCell.swift in Sources */,
+				5ED9716F29195311004D82FB /* AppFullscreenHeaderCell.swift in Sources */,
 				5ED971542912C81F004D82FB /* AppDetailCell.swift in Sources */,
 				5E38B05E2906E5E500C3576D /* AppsHeaderCell.swift in Sources */,
 				5ED971562913C307004D82FB /* PreviewCell.swift in Sources */,
