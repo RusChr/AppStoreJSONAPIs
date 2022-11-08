@@ -19,6 +19,12 @@ class AppFullscreenController: UITableViewController {
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
 		tableView.allowsSelection = false
+		tableView.contentInsetAdjustmentBehavior = .never
+		// Чтобы снизу был отступ. Из-за депрекейта. Жесть.
+		let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first
+		let height = keyWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? .zero
+		tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
+		//
 	}
 	
 	
@@ -27,6 +33,7 @@ class AppFullscreenController: UITableViewController {
 			let headerCell = AppFullscreenHeaderCell()
 			headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
 			headerCell.todayCell.todayItem = todayItem
+			headerCell.todayCell.layer.cornerRadius = 0
 			return headerCell
 		}
 		return AppFullscreenDescriptionCell()

@@ -12,8 +12,7 @@ class AppFullscreenHeaderCell: UITableViewCell {
 	let todayCell = TodayCell()
 	
 	let closeButton: UIButton = {
-		let button = UIButton(type: .system)
-		button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+		let button = UIButton(type: .close)
 		return button
 	}()
 	
@@ -25,7 +24,7 @@ class AppFullscreenHeaderCell: UITableViewCell {
 		todayCell.fillSuperview()
 		
 		contentView.addSubview(closeButton)
-		closeButton.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 12, left: 0, bottom: 0, right: 12), size: .init(width: 80, height: 38))
+		closeButton.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 64, left: 0, bottom: 0, right: 12), size: .init(width: 32, height: 32))
 	}
 	
 	

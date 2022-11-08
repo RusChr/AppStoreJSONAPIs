@@ -21,7 +21,7 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	var heightConstraint: NSLayoutConstraint?
 	
 	let items = [
-		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: .white),
+		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
 		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1))
 	]
 	
@@ -50,6 +50,8 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		
 		self.appFullscreenController = appFullscreenController
 		
+		self.collectionView.isUserInteractionEnabled = false
+		
 		guard let cell = collectionView.cellForItem(at: indexPath) else { return }
 		
 		// absolute coordinates of cell
@@ -71,7 +73,6 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		fullscreenView.layer.cornerRadius = 16
 		
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
-			
 			self.topConstraint?.constant = 0
 			self.leadingConstraint?.constant = 0
 			self.widthConstraint?.constant = self.view.frame.width
@@ -80,6 +81,10 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			self.view.layoutIfNeeded() // starts animation
 			
 			self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
+			
+			guard let cell = appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else { return }
+			cell.todayCell.topConstraint.constant = 64
+			cell.layoutIfNeeded()
 		}
 
 	}
@@ -102,10 +107,15 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			if let tabBarFrame = self.tabBarController?.tabBar.frame {
 				self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
 			}
+			
+			guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else { return }
+			cell.todayCell.topConstraint.constant = 24
+			cell.layoutIfNeeded()
 
 		} completion: { _ in
 			self.appFullscreenController.view.removeFromSuperview()
 			self.appFullscreenController.removeFromParent()
+			self.collectionView.isUserInteractionEnabled = true
 		}
 	}
 	

@@ -15,12 +15,16 @@ class TodayCell: UICollectionViewCell {
 	
 	let imageView = UIImageView(image: #imageLiteral(resourceName: "garden"))
 	
+	var topConstraint: NSLayoutConstraint!
+	
 	var todayItem: TodayItem! {
 		didSet {
 			categoryLabel.text = todayItem.category
 			titleLabel.text = todayItem.title
 			imageView.image = todayItem.image
 			descriptionLabel.text = todayItem.description
+			
+			backgroundColor = todayItem.backgroundColor
 		}
 	}
 	
@@ -42,7 +46,10 @@ class TodayCell: UICollectionViewCell {
 			categoryLabel, titleLabel, imageContainerView, descriptionLabel
 		], spacing: 8)
 		addSubview(stackView)
-		stackView.fillSuperview(padding: .init(top: 32, left: 32, bottom: 32, right: 32))
+		stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 24, right: 24))
+		
+		topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
+		topConstraint.isActive = true
 	}
 	
 	
