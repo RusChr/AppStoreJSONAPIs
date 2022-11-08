@@ -20,6 +20,11 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	var widthConstraint: NSLayoutConstraint?
 	var heightConstraint: NSLayoutConstraint?
 	
+	let items = [
+		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: .white),
+		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1))
+	]
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,10 +38,13 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let appFullscreenController = AppFullscreenController()
-		let redView = appFullscreenController.view!
+		appFullscreenController.todayItem = items[indexPath.row]
+		appFullscreenController.dismissHandler = {
+			self.handleRemoveRedView()
+		}
 		
-		redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
-		view.addSubview(redView)
+		let fullscreenView = appFullscreenController.view!
+		view.addSubview(fullscreenView)
 		
 		addChild(appFullscreenController)
 		
@@ -51,16 +59,16 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		
 		// auto layout constraints animations
 		// 4 anchors
-		redView.translatesAutoresizingMaskIntoConstraints = false
-		topConstraint = redView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
-		leadingConstraint = redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
-		widthConstraint = redView.widthAnchor.constraint(equalToConstant: startingFrame.width)
-		heightConstraint = redView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+		fullscreenView.translatesAutoresizingMaskIntoConstraints = false
+		topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+		leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+		widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+		heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
 		
 		[topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach { $0?.isActive = true }
 		self.view.layoutIfNeeded()
 		//
-		redView.layer.cornerRadius = 16
+		fullscreenView.layer.cornerRadius = 16
 		
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			
@@ -71,41 +79,45 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			
 			self.view.layoutIfNeeded() // starts animation
 			
-			self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 10)
-			self.tabBarController?.tabBar.isHidden = true
+			self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
 		}
 
 	}
 	
 	
-	@objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+	@objc func handleRemoveRedView() {
+		self.navigationController?.navigationBar.isHidden = false
+		
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			self.appFullscreenController.tableView.contentOffset = .zero
 			
 			guard let startingFrame = self.startingFrame else { return }
-			
 			self.topConstraint?.constant = startingFrame.origin.y
 			self.leadingConstraint?.constant = startingFrame.origin.x
 			self.widthConstraint?.constant = startingFrame.width
 			self.heightConstraint?.constant = startingFrame.height
 			
-			self.tabBarController?.tabBar.transform = .identity
-			self.tabBarController?.tabBar.isHidden = false
+			self.view.layoutIfNeeded()
+			
+			if let tabBarFrame = self.tabBarController?.tabBar.frame {
+				self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
+			}
+
 		} completion: { _ in
-			gesture.view?.removeFromSuperview()
+			self.appFullscreenController.view.removeFromSuperview()
 			self.appFullscreenController.removeFromParent()
 		}
-
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 4
+		return items.count
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TodayCell
+		cell.todayItem = items[indexPath.row]
 		
 		return cell
 	}

@@ -48,6 +48,7 @@
 		5ED9716B291906FD004D82FB /* AppFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716A291906FD004D82FB /* AppFullscreenController.swift */; };
 		5ED9716D291933B1004D82FB /* AppFullscreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716C291933B1004D82FB /* AppFullscreenDescriptionCell.swift */; };
 		5ED9716F29195311004D82FB /* AppFullscreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */; };
+		5ED97171291A4A0D004D82FB /* TodayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97170291A4A0D004D82FB /* TodayItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		5ED9716A291906FD004D82FB /* AppFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenController.swift; sourceTree = "<group>"; };
 		5ED9716C291933B1004D82FB /* AppFullscreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenDescriptionCell.swift; sourceTree = "<group>"; };
 		5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenHeaderCell.swift; sourceTree = "<group>"; };
+		5ED97170291A4A0D004D82FB /* TodayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				5E2C347E290EB29E00A70879 /* AppGroup.swift */,
 				5E2C3480291006C800A70879 /* SocialApp.swift */,
 				5ED9716129150204004D82FB /* Reviews.swift */,
+				5ED97170291A4A0D004D82FB /* TodayItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED97171291A4A0D004D82FB /* TodayItem.swift in Sources */,
 				5E8741F42901336900F93C34 /* 05_UIView+Layout.swift in Sources */,
 				5E2C3481291006C800A70879 /* SocialApp.swift in Sources */,
 				5E87420229041B9700F93C34 /* AppsPageController.swift in Sources */,
