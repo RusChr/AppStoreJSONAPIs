@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayCell: UICollectionViewCell {
+class TodayCell: BaseTodayCell {
 	
 	let categoryLabel = UILabel(text: "LIFE HACK", font: .boldSystemFont(ofSize: 20))
 	let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 26))
@@ -17,7 +17,7 @@ class TodayCell: UICollectionViewCell {
 	
 	var topConstraint: NSLayoutConstraint!
 	
-	var todayItem: TodayItem! {
+	override var todayItem: TodayItem! {
 		didSet {
 			categoryLabel.text = todayItem.category
 			titleLabel.text = todayItem.title

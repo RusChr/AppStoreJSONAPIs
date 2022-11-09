@@ -9,7 +9,7 @@ import UIKit
 
 class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
-	fileprivate let cellId = "cellId"
+	static let cellSize: CGFloat = 500
 	
 	var appFullscreenController: AppFullscreenController!
 	
@@ -21,8 +21,10 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	var heightConstraint: NSLayoutConstraint?
 	
 	let items = [
-		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
-		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1))
+		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .single),
+		TodayItem(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cellType: .multiple),
+		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1), cellType: .single),
+		TodayItem(category: "THE SECOND DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), cellType: .multiple)
 	]
 	
 	
@@ -32,7 +34,8 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		navigationController?.isNavigationBarHidden = true
 		
 		collectionView.backgroundColor = .systemGray6
-		collectionView.register(TodayCell.self, forCellWithReuseIdentifier: cellId)
+		collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayItem.CellType.single.rawValue)
+		collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
 	}
 	
 	
@@ -126,15 +129,16 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TodayCell
-		cell.todayItem = items[indexPath.row]
+		let cellId = items[indexPath.item].cellType.rawValue
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
+		cell.todayItem = items[indexPath.item]
 		
 		return cell
 	}
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return .init(width: view.frame.width - 64, height: 450)
+		return .init(width: view.frame.width - 64, height: TodayController.cellSize)
 	}
 	
 	
