@@ -20,22 +20,73 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	var widthConstraint: NSLayoutConstraint?
 	var heightConstraint: NSLayoutConstraint?
 	
-	let items = [
-		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .single),
-		TodayItem(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cellType: .multiple),
-		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1), cellType: .single),
-		TodayItem(category: "THE SECOND DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), cellType: .multiple)
-	]
+//	let items = [
+//		TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .single),
+//		TodayItem(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cellType: .multiple),
+//		TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1), cellType: .single),
+//		TodayItem(category: "THE SECOND DAILY LIST", title: "Test-Drive These CarPlay Apps", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), cellType: .multiple)
+//	]
+	
+	var items = [TodayItem]()
+	
+	let activityIndicatorView: UIActivityIndicatorView = {
+		let aiv = UIActivityIndicatorView(style: .large)
+		aiv.color = .systemGray
+		aiv.startAnimating()
+		aiv.hidesWhenStopped = true
+		
+		return aiv
+	}()
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		view.addSubview(activityIndicatorView)
+		activityIndicatorView.centerInSuperview()
+		
+		fetchData()
 		
 		navigationController?.isNavigationBarHidden = true
 		
 		collectionView.backgroundColor = .systemGray6
 		collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayItem.CellType.single.rawValue)
 		collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
+	}
+	
+	
+	fileprivate func fetchData() {
+		let dispatchGroup = DispatchGroup()
+		var topFreeAppGroup: AppGroup?
+		var topPaidAppGroup: AppGroup?
+		
+		dispatchGroup.enter()
+		Service.shared.fetchTopFreeApps { (appGroup, err) in
+			topFreeAppGroup = appGroup
+			dispatchGroup.leave()
+		}
+		
+		dispatchGroup.enter()
+		Service.shared.fetchTopPaidApps { (appGroup, err) in
+			topPaidAppGroup = appGroup
+			dispatchGroup.leave()
+		}
+		
+		// completion block
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.items = [
+				TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .single, apps: []),
+				
+				TodayItem(category: "DAILY LIST", title: topFreeAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cellType: .multiple, apps: topFreeAppGroup?.feed.results ?? []),
+				
+				TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1), cellType: .single, apps: []),
+				
+				TodayItem(category: "DAILY LIST", title: topPaidAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), cellType: .multiple, apps: topPaidAppGroup?.feed.results ?? [])
+			]
+			
+			self?.activityIndicatorView.stopAnimating()
+			self?.collectionView.reloadData()
+		}
 	}
 	
 	

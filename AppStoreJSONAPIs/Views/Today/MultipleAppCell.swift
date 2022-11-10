@@ -11,7 +11,7 @@ class MultipleAppCell: UICollectionViewCell {
 	
 	let appIconImageView = UIImageView(cornerRadius: 8)
 	
-	let nameLabel = UILabel(text: "AppName", font: .boldSystemFont(ofSize: 16), numberOfLines: 2)
+	let nameLabel = UILabel(text: "AppName", font: .boldSystemFont(ofSize: 15), numberOfLines: 2)
 	let companyLabel = UILabel(text: "CompanyName", font: .systemFont(ofSize: 13))
 	
 	let getButton = UIButton(title: "GET")

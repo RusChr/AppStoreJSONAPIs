@@ -20,6 +20,9 @@ class TodayMultipleAppCell: BaseTodayCell {
 			titleLabel.text = todayItem.title
 			
 			backgroundColor = todayItem.backgroundColor
+			
+			multipleAppsController.results = todayItem.apps
+			multipleAppsController.collectionView.reloadData()
 		}
 	}
 	

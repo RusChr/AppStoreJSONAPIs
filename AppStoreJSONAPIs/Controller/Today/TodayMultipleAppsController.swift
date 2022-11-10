@@ -24,18 +24,19 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 		
 		collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: cellId)
 		
-		fetchData()
+		// NEVER EXECUTE FETCH CODE INSIDE OF A VIEW
+//		fetchData()
 	}
 	
 	
-	func fetchData() {
-		Service.shared.fetchTopFreeApps { [weak self] (appGroup, err) in
-			self?.results = appGroup?.feed.results ?? []
-			DispatchQueue.main.async {
-				self?.collectionView.reloadData()
-			}
-		}
-	}
+//	func fetchData() {
+//		Service.shared.fetchTopFreeApps { [weak self] (appGroup, err) in
+//			self?.results = appGroup?.feed.results ?? []
+//			DispatchQueue.main.async {
+//				self?.collectionView.reloadData()
+//			}
+//		}
+//	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
