@@ -51,6 +51,8 @@
 		5ED97171291A4A0D004D82FB /* TodayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97170291A4A0D004D82FB /* TodayItem.swift */; };
 		5ED97173291BA002004D82FB /* TodayMultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97172291BA002004D82FB /* TodayMultipleAppCell.swift */; };
 		5ED97175291C0266004D82FB /* BaseTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97174291C0266004D82FB /* BaseTodayCell.swift */; };
+		5ED97177291CF83F004D82FB /* TodayMultipleAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97176291CF83F004D82FB /* TodayMultipleAppsController.swift */; };
+		5ED97179291CF927004D82FB /* MultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED97178291CF927004D82FB /* MultipleAppCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +101,8 @@
 		5ED97170291A4A0D004D82FB /* TodayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayItem.swift; sourceTree = "<group>"; };
 		5ED97172291BA002004D82FB /* TodayMultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppCell.swift; sourceTree = "<group>"; };
 		5ED97174291C0266004D82FB /* BaseTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTodayCell.swift; sourceTree = "<group>"; };
+		5ED97176291CF83F004D82FB /* TodayMultipleAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppsController.swift; sourceTree = "<group>"; };
+		5ED97178291CF927004D82FB /* MultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAppCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,7 @@
 			children = (
 				5ED971642918EDB3004D82FB /* TodayController.swift */,
 				5ED9716A291906FD004D82FB /* AppFullscreenController.swift */,
+				5ED97176291CF83F004D82FB /* TodayMultipleAppsController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				5ED9716E29195311004D82FB /* AppFullscreenHeaderCell.swift */,
 				5ED97172291BA002004D82FB /* TodayMultipleAppCell.swift */,
 				5ED97174291C0266004D82FB /* BaseTodayCell.swift */,
+				5ED97178291CF927004D82FB /* MultipleAppCell.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */,
 				5E8741F629015BD000F93C34 /* VerticalStackView.swift in Sources */,
 				5E8741FC290187C200F93C34 /* Service.swift in Sources */,
+				5ED97177291CF83F004D82FB /* TodayMultipleAppsController.swift in Sources */,
 				5ED97175291C0266004D82FB /* BaseTodayCell.swift in Sources */,
 				5ED9716029140DD0004D82FB /* ReviewCell.swift in Sources */,
 				5E87420A2904237800F93C34 /* Extensions.swift in Sources */,
@@ -401,6 +408,7 @@
 				5E87420429041CEC00F93C34 /* BaseListController.swift in Sources */,
 				5ED97173291BA002004D82FB /* TodayMultipleAppCell.swift in Sources */,
 				5ED7A94B28FEFA01009CE3D0 /* SceneDelegate.swift in Sources */,
+				5ED97179291CF927004D82FB /* MultipleAppCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ class TodayMultipleAppCell: BaseTodayCell {
 	let categoryLabel = UILabel(text: "THE DAILY LIST", font: .boldSystemFont(ofSize: 20))
 	let titleLabel = UILabel(text: "Test-Drive These CarPlay Apps", font: .boldSystemFont(ofSize: 26), numberOfLines: 3)
 	
-	let multipleAppsController = UIViewController()
+	let multipleAppsController = TodayMultipleAppsController()
 	
 	override var todayItem: TodayItem! {
 		didSet {
@@ -29,6 +29,8 @@ class TodayMultipleAppCell: BaseTodayCell {
 		backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
 		clipsToBounds = true
 		layer.cornerRadius = 16
+		
+		[categoryLabel, titleLabel].forEach { $0.textColor = .black }
 		
 		let stackView = VerticalStackView(arrangedSubviews: [
 			categoryLabel,
