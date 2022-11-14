@@ -21,7 +21,7 @@ class TodayMultipleAppCell: BaseTodayCell {
 			
 			backgroundColor = todayItem.backgroundColor
 			
-			multipleAppsController.results = todayItem.apps
+			multipleAppsController.apps = todayItem.apps
 			multipleAppsController.collectionView.reloadData()
 		}
 	}

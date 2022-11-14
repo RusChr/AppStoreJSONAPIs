@@ -21,7 +21,7 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 		return button
 	}()
 	
-	var results = [FeedResult]()
+	var apps = [FeedResult]()
 	
 	enum Mode {
 		case small, fullscreen
@@ -35,6 +35,8 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 		
 		if mode == .fullscreen {
 			setupCloseButton()
+			navigationController?.isNavigationBarHidden = true
+//			navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
 		} else {
 			collectionView.isScrollEnabled = false
 		}
@@ -58,16 +60,23 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		if mode == .fullscreen {
-			return results.count
+			return apps.count
 		}
-		return min(rowCount, results.count)
+		return min(rowCount, apps.count)
 	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MultipleAppCell
-		cell.app = results[indexPath.item]
+		cell.app = apps[indexPath.item]
 		return cell
+	}
+	
+	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let appId = apps[indexPath.item].id
+		let appDetailController = AppDetailController(appId: appId)
+		navigationController?.pushViewController(appDetailController, animated: true)
 	}
 	
 	

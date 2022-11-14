@@ -55,6 +55,13 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	}
 	
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		tabBarController?.tabBar.superview?.setNeedsLayout()
+	}
+	
+	
 	fileprivate func fetchData() {
 		let dispatchGroup = DispatchGroup()
 		var topFreeAppGroup: AppGroup?
@@ -93,18 +100,15 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if items[indexPath.item].cellType == .multiple {
 			let fullController = TodayMultipleAppsController(mode: .fullscreen)
-			fullController.results = items[indexPath.item].apps
-			
-			present(fullController, animated: true)
-			
+			fullController.apps = items[indexPath.item].apps
+			present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
 			return
 		}
-		
 		
 		let appFullscreenController = AppFullscreenController()
 		appFullscreenController.todayItem = items[indexPath.row]
 		appFullscreenController.dismissHandler = {
-			self.handleRemoveRedView()
+			self.handleRemoveFullscreenController()
 		}
 		
 		let fullscreenView = appFullscreenController.view!
@@ -154,9 +158,26 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	}
 	
 	
-	@objc func handleRemoveRedView() {
-		self.navigationController?.navigationBar.isHidden = false
-		
+	@objc fileprivate func handleMultipleAppsTap(gesture: UIGestureRecognizer) {
+		let collectionView = gesture.view
+		// figure out wich cell (DAILY LIST) were clicking into
+		var superview = collectionView?.superview
+		while superview != nil {
+			if let cell = superview as? TodayMultipleAppCell {
+				guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
+				let apps = items[indexPath.item].apps
+				let fullController = TodayMultipleAppsController(mode: .fullscreen)
+				fullController.apps = apps
+				present(fullController, animated: true)
+				return
+			}
+			superview = superview?.superview
+		}
+		//
+	}
+	
+	
+	@objc func handleRemoveFullscreenController() {
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			self.appFullscreenController.tableView.contentOffset = .zero
 			
@@ -193,6 +214,10 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		let cellId = items[indexPath.item].cellType.rawValue
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
 		cell.todayItem = items[indexPath.item]
+		
+		if let cell = cell as? TodayMultipleAppCell {
+			cell.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
+		}
 		
 		return cell
 	}
