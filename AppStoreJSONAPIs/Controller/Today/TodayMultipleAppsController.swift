@@ -8,38 +8,58 @@
 import UIKit
 
 class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateFlowLayout {
-	
+
+	fileprivate let mode: Mode
 	fileprivate let cellId = "cellId"
 	fileprivate let spacing: CGFloat = 16
 	fileprivate let rowCount = 4
 	
+	let closeButton: UIButton = {
+		let button = UIButton(type: .system)
+		button.setImage(UIImage(named: "xmark.circle.fill"), for: .normal)
+		button.tintColor = .darkGray
+		return button
+	}()
+	
 	var results = [FeedResult]()
+	
+	enum Mode {
+		case small, fullscreen
+	}
+	
+	override var prefersStatusBarHidden: Bool { return true }
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		collectionView.backgroundColor = .clear
-		collectionView.isScrollEnabled = false
+		if mode == .fullscreen {
+			setupCloseButton()
+		} else {
+			collectionView.isScrollEnabled = false
+		}
 		
+		collectionView.backgroundColor = .white
 		collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: cellId)
-		
-		// NEVER EXECUTE FETCH CODE INSIDE OF A VIEW
-//		fetchData()
 	}
 	
 	
-//	func fetchData() {
-//		Service.shared.fetchTopFreeApps { [weak self] (appGroup, err) in
-//			self?.results = appGroup?.feed.results ?? []
-//			DispatchQueue.main.async {
-//				self?.collectionView.reloadData()
-//			}
-//		}
-//	}
+	func setupCloseButton() {
+		view.addSubview(closeButton)
+		closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+		closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 0, bottom: 0, right: 16), size: .init(width: 32, height: 32))
+	}
+	
+	
+	@objc func handleDismiss() {
+		dismiss(animated: true)
+	}
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		if mode == .fullscreen {
+			return results.count
+		}
 		return min(rowCount, results.count)
 	}
 	
@@ -52,12 +72,38 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		let height: CGFloat = (view.frame.height - (spacing * CGFloat(rowCount - 1))) / CGFloat(rowCount)
-		return .init(width: view.frame.width, height: height)
+		var height: CGFloat = (view.frame.height - (spacing * CGFloat(rowCount - 1))) / CGFloat(rowCount)
+		var width: CGFloat = view.frame.width
+		
+		if mode == .fullscreen {
+			height = 64
+			width = width - 48
+		}
+		return .init(width: width, height: height)
 	}
 	
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 		return spacing
+	}
+	
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		if mode == .fullscreen {
+			return .init(top: 24, left: 24, bottom: 12, right: 24)
+		}
+		
+		return .zero
+	}
+	
+	
+	init(mode: Mode) {
+		self.mode = mode
+		super.init()
+	}
+	
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError()
 	}
 }

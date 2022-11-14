@@ -77,11 +77,11 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			self?.items = [
 				TodayItem(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .single, apps: []),
 				
-				TodayItem(category: "DAILY LIST", title: topFreeAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cellType: .multiple, apps: topFreeAppGroup?.feed.results ?? []),
+				TodayItem(category: "DAILY LIST", title: topFreeAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .multiple, apps: topFreeAppGroup?.feed.results ?? []),
 				
 				TodayItem(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.9853675961, green: 0.967464149, blue: 0.7221172452, alpha: 1), cellType: .single, apps: []),
 				
-				TodayItem(category: "DAILY LIST", title: topPaidAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), cellType: .multiple, apps: topPaidAppGroup?.feed.results ?? [])
+				TodayItem(category: "DAILY LIST", title: topPaidAppGroup?.feed.title ?? "", image: UIImage(), description: "", backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), cellType: .multiple, apps: topPaidAppGroup?.feed.results ?? [])
 			]
 			
 			self?.activityIndicatorView.stopAnimating()
@@ -91,6 +91,16 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if items[indexPath.item].cellType == .multiple {
+			let fullController = TodayMultipleAppsController(mode: .fullscreen)
+			fullController.results = items[indexPath.item].apps
+			
+			present(fullController, animated: true)
+			
+			return
+		}
+		
+		
 		let appFullscreenController = AppFullscreenController()
 		appFullscreenController.todayItem = items[indexPath.row]
 		appFullscreenController.dismissHandler = {

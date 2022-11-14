@@ -12,7 +12,7 @@ class TodayMultipleAppCell: BaseTodayCell {
 	let categoryLabel = UILabel(text: "THE DAILY LIST", font: .boldSystemFont(ofSize: 20))
 	let titleLabel = UILabel(text: "Test-Drive These CarPlay Apps", font: .boldSystemFont(ofSize: 26), numberOfLines: 3)
 	
-	let multipleAppsController = TodayMultipleAppsController()
+	let multipleAppsController = TodayMultipleAppsController(mode: .small)
 	
 	override var todayItem: TodayItem! {
 		didSet {
