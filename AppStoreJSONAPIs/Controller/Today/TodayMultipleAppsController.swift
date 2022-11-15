@@ -15,9 +15,7 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 	fileprivate let rowCount = 4
 	
 	let closeButton: UIButton = {
-		let button = UIButton(type: .system)
-		button.setImage(UIImage(named: "xmark.circle.fill"), for: .normal)
-		button.tintColor = .darkGray
+		let button = UIButton(type: .close)
 		return button
 	}()
 	
@@ -49,7 +47,7 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 	func setupCloseButton() {
 		view.addSubview(closeButton)
 		closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-		closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 0, bottom: 0, right: 16), size: .init(width: 32, height: 32))
+		closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 48, left: 0, bottom: 0, right: 16), size: .init(width: 32, height: 32))
 	}
 	
 	

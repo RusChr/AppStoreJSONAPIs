@@ -33,8 +33,7 @@ class TodayCell: BaseTodayCell {
 		super.init(frame: frame)
 		
 		backgroundColor = .white
-		clipsToBounds = true
-		layer.cornerRadius = 16
+		imageView.clipsToBounds = true
 		
 		[categoryLabel, titleLabel, descriptionLabel].forEach { $0.textColor = .black }
 		

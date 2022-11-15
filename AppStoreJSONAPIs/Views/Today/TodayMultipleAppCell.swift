@@ -29,10 +29,6 @@ class TodayMultipleAppCell: BaseTodayCell {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-		clipsToBounds = true
-		layer.cornerRadius = 16
-		
 		[categoryLabel, titleLabel].forEach { $0.textColor = .black }
 		
 		let stackView = VerticalStackView(arrangedSubviews: [
