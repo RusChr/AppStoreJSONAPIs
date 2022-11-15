@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
+class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 	
 	static let cellSize: CGFloat = 500
 	
@@ -18,6 +18,8 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	var anchoredConstraints: AnchoredConstraints?
 	
 	var items = [TodayItem]()
+	
+	let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 	
 	let activityIndicatorView: UIActivityIndicatorView = {
 		let aiv = UIActivityIndicatorView(style: .large)
@@ -31,6 +33,10 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		view.addSubview(blurVisualEffectView)
+		blurVisualEffectView.fillSuperview()
+		blurVisualEffectView.alpha = 0
 		
 		view.addSubview(activityIndicatorView)
 		activityIndicatorView.centerInSuperview()
@@ -109,10 +115,8 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 	fileprivate func showSingleAppFullscreen(_ indexPath: IndexPath) {
 		// #1
 		setupSingleAppFullscreenController(indexPath)
-		
 		// #2 setup fullscreen in its starting position
 		setupAppFullscreenStartingPosition(indexPath)
-		
 		// #3 begin the fullscreen animation
 		beginAnimationAppFullscreen()
 	}
@@ -122,12 +126,38 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 		let appFullscreenController = AppFullscreenController()
 		appFullscreenController.todayItem = items[indexPath.row]
 		appFullscreenController.dismissHandler = {
-			self.handleRemoveFullscreenController()
+			self.handleAppFullscreenDismissal()
 		}
-		
 		appFullscreenController.view.layer.cornerRadius = 16
-		
 		self.appFullscreenController = appFullscreenController
+		
+		// #1 setup our pan gesture
+		// Свайп вниз, чтобы закрыть открытый контроллер
+		let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleDrag))
+		gesture.delegate = self
+		appFullscreenController.view.addGestureRecognizer(gesture)
+		
+		// #2 add a blur effect view
+		
+		// #3 not to interfere with our UITableView scrolling
+	}
+	
+	
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
+	}
+	
+	
+	@objc fileprivate func handleDrag(gesture: UIPanGestureRecognizer) {
+		let translationY = gesture.translation(in: appFullscreenController.view).y
+		let scale = 1 - translationY / 1000
+		let transform: CGAffineTransform = .init(scaleX: scale, y: scale)
+		
+		if gesture.state == .changed {
+			appFullscreenController.view.transform = transform
+		} else if gesture.state == .ended {
+			handleAppFullscreenDismissal()
+		}
 	}
 	
 	
@@ -166,6 +196,8 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			self.anchoredConstraints?.width?.constant = self.view.frame.width
 			self.anchoredConstraints?.height?.constant = self.view.frame.height
 			
+			self.blurVisualEffectView.alpha = 1
+			
 			self.view.layoutIfNeeded() // starts animation
 			
 			self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
@@ -194,19 +226,21 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
 			}
 			superview = superview?.superview
 		}
-		//
 	}
 	
 	
-	@objc func handleRemoveFullscreenController() {
+	@objc func handleAppFullscreenDismissal() {
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			self.appFullscreenController.tableView.contentOffset = .zero
+			self.appFullscreenController.view.transform = .identity
 			
 			guard let startingFrame = self.startingFrame else { return }
 			self.anchoredConstraints?.top?.constant = startingFrame.origin.y
 			self.anchoredConstraints?.leading?.constant = startingFrame.origin.x
 			self.anchoredConstraints?.width?.constant = startingFrame.width
 			self.anchoredConstraints?.height?.constant = startingFrame.height
+			
+			self.blurVisualEffectView.alpha = 0
 			
 			self.view.layoutIfNeeded()
 			
