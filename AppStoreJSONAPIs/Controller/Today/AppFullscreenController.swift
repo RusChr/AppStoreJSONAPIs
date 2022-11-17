@@ -28,6 +28,14 @@ class AppFullscreenController: UITableViewController {
 	}
 	
 	
+	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if scrollView.contentOffset.y < 0 {
+			scrollView.isScrollEnabled = false
+			scrollView.isScrollEnabled = true
+		}
+	}
+	
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if indexPath.item == 0 {
 			let headerCell = AppFullscreenHeaderCell()
@@ -35,6 +43,7 @@ class AppFullscreenController: UITableViewController {
 			headerCell.todayCell.todayItem = todayItem
 			headerCell.todayCell.layer.cornerRadius = 0
 			headerCell.clipsToBounds = true
+			headerCell.backgroundView = nil
 			return headerCell
 		}
 		return AppFullscreenDescriptionCell()
