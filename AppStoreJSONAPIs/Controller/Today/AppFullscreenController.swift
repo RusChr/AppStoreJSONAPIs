@@ -16,6 +16,8 @@ class AppFullscreenController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		view.clipsToBounds = true
+		
 		tableView.tableFooterView = UIView()
 		tableView.separatorStyle = .none
 		tableView.allowsSelection = false

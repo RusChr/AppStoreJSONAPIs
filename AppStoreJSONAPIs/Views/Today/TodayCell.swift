@@ -34,10 +34,9 @@ class TodayCell: BaseTodayCell {
 		
 		backgroundColor = .white
 		imageView.clipsToBounds = true
+		imageView.contentMode = .scaleAspectFill
 		
 		[categoryLabel, titleLabel, descriptionLabel].forEach { $0.textColor = .black }
-		
-		imageView.contentMode = .scaleAspectFill
 		
 		let imageContainerView = UIView()
 		imageContainerView.addSubview(imageView)

@@ -171,7 +171,14 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 		if gesture.state == .changed && translationY > 0 {
 			appFullscreenController.view.transform = transform
 		} else if gesture.state == .ended && translationY > 0 {
-			handleAppFullscreenDismissal()
+			if scale < 0.85 {
+				handleAppFullscreenDismissal()
+			} else {
+				UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut) {
+					self.appFullscreenController.view.transform = .identity
+				}
+
+			}
 		}
 	}
 	

@@ -20,7 +20,7 @@ class AppFullscreenHeaderCell: UITableViewCell {
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		
-		contentView.addSubview(todayCell)
+		addSubview(todayCell)
 		todayCell.fillSuperview()
 		
 		contentView.addSubview(closeButton)
