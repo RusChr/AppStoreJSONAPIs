@@ -58,7 +58,7 @@ class AppFullscreenController: UIViewController, UITableViewDelegate, UITableVie
 		floatingContainerView.clipsToBounds = true
 		
 		view.addSubview(floatingContainerView)
-		floatingContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: statusBarHeight, right: 16), size: .init(width: 0, height: 90))
+		floatingContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: -2 * statusBarHeight, right: 16), size: .init(width: 0, height: 90))
 		
 		// add our subviews
 		let imageView = UIImageView(cornerRadius: 8)
@@ -77,8 +77,8 @@ class AppFullscreenController: UIViewController, UITableViewDelegate, UITableVie
 		let stackView = UIStackView(arrangedSubviews: [
 			imageView,
 			VerticalStackView(arrangedSubviews: [
-				UILabel(text: "Life Hack", font: .boldSystemFont(ofSize: 18)),
-				UILabel(text: "Utilizing your Time", font: .systemFont(ofSize: 16), numberOfLines: 1)
+				UILabel(text: todayItem?.category.capitalized ?? "", font: .boldSystemFont(ofSize: 18)),
+				UILabel(text: todayItem?.title.capitalized ?? "", font: .systemFont(ofSize: 16), numberOfLines: 1)
 			], spacing: 4),
 			getButton
 		], customSpacing: 16)
@@ -99,6 +99,11 @@ class AppFullscreenController: UIViewController, UITableViewDelegate, UITableVie
 		if scrollView.contentOffset.y < 0 {
 			scrollView.isScrollEnabled = false
 			scrollView.isScrollEnabled = true
+		}
+		
+		let transform = scrollView.contentOffset.y > 100 ? CGAffineTransform(translationX: 0, y: -3 * self.statusBarHeight) : .identity
+		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
+			self.floatingContainerView.transform = transform
 		}
 	}
 	
