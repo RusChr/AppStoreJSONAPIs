@@ -155,9 +155,7 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 			appFullscreenBeginOffset = appFullscreenController.tableView.contentOffset.y
 		}
 		
-		if appFullscreenController.tableView.contentOffset.y > 0 {
-			return
-		}
+		if appFullscreenController.tableView.contentOffset.y > 0 { return }
 		
 		let translationY = gesture.translation(in: appFullscreenController.view).y
 		let trueOffset = translationY - appFullscreenBeginOffset
@@ -177,7 +175,6 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 				UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut) {
 					self.appFullscreenController.view.transform = .identity
 				}
-
 			}
 		}
 	}
@@ -255,6 +252,7 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 		UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
 			self.appFullscreenController.tableView.contentOffset = .zero
 			self.appFullscreenController.view.transform = .identity
+			self.appFullscreenController.closeButton.alpha = 0
 			
 			guard let startingFrame = self.startingFrame else { return }
 			self.anchoredConstraints?.top?.constant = startingFrame.origin.y
@@ -271,7 +269,6 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 			}
 			
 			guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else { return }
-			cell.closeButton.alpha = 0
 			cell.todayCell.topConstraint.constant = 24
 			cell.layoutIfNeeded()
 

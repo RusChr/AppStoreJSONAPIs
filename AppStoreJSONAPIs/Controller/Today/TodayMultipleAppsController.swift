@@ -44,7 +44,7 @@ class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateF
 	}
 	
 	
-	func setupCloseButton() {
+	fileprivate func setupCloseButton() {
 		view.addSubview(closeButton)
 		closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
 		closeButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 48, left: 0, bottom: 0, right: 16), size: .init(width: 32, height: 32))
