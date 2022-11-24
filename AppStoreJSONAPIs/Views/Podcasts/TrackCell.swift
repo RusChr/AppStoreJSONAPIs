@@ -10,8 +10,8 @@ import UIKit
 class TrackCell: UICollectionViewCell {
 	
 	let imageView = UIImageView(cornerRadius: 16)
-	let nameLabel = UILabel(text: "Track Name", font: .boldSystemFont(ofSize: 18))
-	let subtitleLabel = UILabel(text: "subtitle label", font: .systemFont(ofSize: 16), numberOfLines: 2)
+	let nameLabel = UILabel(text: "Track Name", font: .boldSystemFont(ofSize: 16))
+	let subtitleLabel = UILabel(text: "subtitle label", font: .systemFont(ofSize: 14), numberOfLines: 2)
 	
 	
 	override init(frame: CGRect) {

@@ -16,7 +16,9 @@ class Service {
 	
 	
 	func fetchJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
-		guard let url = URL(string: urlString) else { return }
+		guard let url = URL(string: urlString) else {
+			print("Invalid url", urlString)
+			return }
 		
 		URLSession.shared.dataTask(with: url) { data, resp, err in
 			if let err = err {
@@ -37,9 +39,10 @@ class Service {
 	}
 	
 	
-	func fetchApps(searchTerm: String, completion: @escaping (SearchResult?, Error?) -> Void) {
-		let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
-		
+	func fetchSearchResult(term: String, entity: String = "software", offset: Int = 0, limit: Int = 50, completion: @escaping (SearchResult?, Error?) -> Void) {
+		var urlString = "https://itunes.apple.com/search?term=\(term)&entity=\(entity)&offset=\(offset)&limit=\(limit)"
+		urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+		//let urlString = "https://itunes.apple.com/search?term=Коран&entity=podcast&offset=0&limit=10"
 		fetchJSONData(urlString: urlString, completion: completion)
 	}
 	

@@ -59,7 +59,7 @@ class AppsSearchController: BaseListController, UICollectionViewDelegateFlowLayo
 	
 	
 	fileprivate func fetchITunesApps(searchTerm: String = "instagram") {
-		Service.shared.fetchApps(searchTerm: searchTerm) { [weak self] (result, err) in
+		Service.shared.fetchSearchResult(term: searchTerm) { [weak self] (result, err) in
 			guard let self = self else { return }
 			
 			if let err = err {
