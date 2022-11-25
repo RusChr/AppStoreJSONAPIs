@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E01CCB32930DBE90018053B /* AppsCompositionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E01CCB22930DBE90018053B /* AppsCompositionalView.swift */; };
 		5E2C347F290EB29E00A70879 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C347E290EB29E00A70879 /* AppGroup.swift */; };
 		5E2C3481291006C800A70879 /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C3480291006C800A70879 /* SocialApp.swift */; };
 		5E38B05A29068A9E00C3576D /* AppsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E38B05929068A9E00C3576D /* AppsPageHeader.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E01CCB22930DBE90018053B /* AppsCompositionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsCompositionalView.swift; sourceTree = "<group>"; };
 		5E2C347E290EB29E00A70879 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		5E2C3480291006C800A70879 /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
 		5E38B05929068A9E00C3576D /* AppsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeader.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E01CCB12930DBD10018053B /* Compositional */ = {
+			isa = PBXGroup;
+			children = (
+				5E01CCB22930DBE90018053B /* AppsCompositionalView.swift */,
+			);
+			path = Compositional;
+			sourceTree = "<group>";
+		};
 		5E8741EC2900452E00F93C34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 		5E87420029041B5B00F93C34 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				5E01CCB12930DBD10018053B /* Compositional */,
 				5ED9714F2912B9AA004D82FB /* Details */,
 				5E87420129041B9700F93C34 /* AppsPageController.swift */,
 				5E87420B2904281900F93C34 /* AppsHorizontalController.swift */,
@@ -420,6 +431,7 @@
 				5ED9714E29129F35004D82FB /* BetterSnappingLayout.swift in Sources */,
 				5E87420C2904281900F93C34 /* AppsHorizontalController.swift in Sources */,
 				5EC998A4292BB99700911232 /* TrackCell.swift in Sources */,
+				5E01CCB32930DBE90018053B /* AppsCompositionalView.swift in Sources */,
 				5ED9715A2913D7F9004D82FB /* ScreenshotCell.swift in Sources */,
 				5ED971512912B9C7004D82FB /* AppDetailController.swift in Sources */,
 				5E8741EE2900458900F93C34 /* AppsSearchController.swift in Sources */,
