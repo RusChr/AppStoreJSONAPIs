@@ -17,7 +17,7 @@ class BaseTabBarController: UITabBarController {
 			createNavController(viewController: AppsPageController(), title: "Apps", imageName: "apps.iphone"),
 			createNavController(viewController: PodcastController(), title: "Podcasts", imageName: "mic.fill"),
 			createNavController(viewController: AppsSearchController(), title: "Search", imageName: "magnifyingglass"),
-			createNavController(viewController: AppsCompositionalView(), title: "AppsSUI", imageName: "swift")
+			createNavController(viewController: AppsCompositionalController(), title: "AppsSUI", imageName: "swift")
 		]
 	}
 	
