@@ -16,7 +16,8 @@ class BaseTabBarController: UITabBarController {
 			createNavController(viewController: TodayController(), title: "Today", imageName: "switch.programmable"),
 			createNavController(viewController: AppsPageController(), title: "Apps", imageName: "apps.iphone"),
 			createNavController(viewController: PodcastController(), title: "Podcasts", imageName: "mic.fill"),
-			createNavController(viewController: AppsSearchController(), title: "Search", imageName: "magnifyingglass")
+			createNavController(viewController: AppsSearchController(), title: "Search", imageName: "magnifyingglass"),
+			createNavController(viewController: AppsCompositionalView(), title: "AppsSUI", imageName: "swift")
 		]
 	}
 	
@@ -25,7 +26,6 @@ class BaseTabBarController: UITabBarController {
 		let navController = UINavigationController(rootViewController: viewController)
 		navController.tabBarItem.title = title
 		navController.tabBarItem.image = UIImage(systemName: imageName)
-		//navController.tabBarItem.image = UIImage(name: imageName)
 		navController.navigationBar.prefersLargeTitles = true
 		viewController.navigationItem.title = title
 		
