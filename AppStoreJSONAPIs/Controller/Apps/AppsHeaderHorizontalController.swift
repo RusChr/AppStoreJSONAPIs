@@ -37,11 +37,11 @@ class AppsHeaderHorizontalController: HorizontalSnappingController, UICollection
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppsHeaderCell
-		let socialApp = socialApps[indexPath.item]
+		let app = socialApps[indexPath.item]
 		
-		cell.companyLabel.text = socialApp.name
-		cell.titleLabel.text = socialApp.tagline
-		cell.imageView.sd_setImage(with: URL(string: socialApp.imageUrl))
+		cell.companyLabel.text = app.name
+		cell.titleLabel.text = app.tagline
+		cell.imageView.sd_setImage(with: URL(string: app.imageUrl))
 		
 		return cell
 	}
