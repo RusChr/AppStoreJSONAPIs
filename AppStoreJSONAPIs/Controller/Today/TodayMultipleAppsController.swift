@@ -9,17 +9,17 @@ import UIKit
 
 class TodayMultipleAppsController: BaseListController, UICollectionViewDelegateFlowLayout {
 
-	fileprivate let mode: Mode
 	fileprivate let cellId = "cellId"
 	fileprivate let spacing: CGFloat = 16
 	fileprivate let rowCount = 4
+	
+	fileprivate let mode: Mode
+	var apps = [FeedResult]()
 	
 	let closeButton: UIButton = {
 		let button = UIButton(type: .close)
 		return button
 	}()
-	
-	var apps = [FeedResult]()
 	
 	enum Mode {
 		case small, fullscreen

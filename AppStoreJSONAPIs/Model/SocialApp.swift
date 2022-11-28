@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SocialApp: Decodable {
+struct SocialApp: Decodable, Hashable {
 	let id: String
 	let name: String
 	let imageUrl: String

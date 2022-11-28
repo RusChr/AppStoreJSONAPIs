@@ -11,14 +11,11 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout, U
 	
 	static let cellSize: CGFloat = 500
 	
-	var appFullscreenController: AppFullscreenController!
-	
 	var appFullscreenBeginOffset: CGFloat = 0
-	
 	var startingFrame: CGRect?
 	
 	var anchoredConstraints: AnchoredConstraints?
-	
+	var appFullscreenController: AppFullscreenController!
 	var items = [TodayItem]()
 	
 	let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))

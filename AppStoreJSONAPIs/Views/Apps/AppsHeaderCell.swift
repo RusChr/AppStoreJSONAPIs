@@ -14,6 +14,14 @@ class AppsHeaderCell: UICollectionViewCell {
 	
 	let imageView = UIImageView(cornerRadius: 8)
 	
+	var app: SocialApp! {
+		didSet {
+			companyLabel.text = app.name
+			titleLabel.text = app.tagline
+			imageView.sd_setImage(with: URL(string: app.imageUrl))
+		}
+	}
+	
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)

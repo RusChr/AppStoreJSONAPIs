@@ -16,7 +16,6 @@ class AppsHorizontalController: HorizontalSnappingController, UICollectionViewDe
 	let lineSpacing: CGFloat = 10
 	
 	var appGroup: AppGroup?
-	
 	var didSelectHandler: ((FeedResult) -> Void)?
 	
 	
