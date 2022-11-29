@@ -9,16 +9,36 @@ import SwiftUI
 
 class AppsCompositionalController: UICollectionViewController {
 	
+	enum AppSection {
+		case topSocial
+		case topFree
+		case topPaid
+	}
+	
 	fileprivate let cellId = "cellId"
 	fileprivate let smallCellId = "smallCellId"
 	fileprivate let headerId = "headerId"
 	
-	fileprivate var socialApps = [SocialApp]()
+	//fileprivate var socialApps = [SocialApp]()
 	fileprivate var freeApps: AppGroup?
 	fileprivate var paidApps: AppGroup?
 	
-	enum AppSection {
-		case topSocial
+	lazy var diffableDataSource: UICollectionViewDiffableDataSource<AppSection, AnyHashable> = .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+		
+		if let socialApp = itemIdentifier as? SocialApp {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! AppsHeaderCell
+			cell.app = socialApp
+			
+			return cell
+			
+		} else if let appGroup = itemIdentifier as? FeedResult {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.smallCellId, for: indexPath) as! AppRowCell
+			cell.app = appGroup
+			
+			return cell
+		}
+		
+		return nil
 	}
 	
 	
@@ -39,15 +59,6 @@ class AppsCompositionalController: UICollectionViewController {
 	}
 	
 	
-	lazy var diffableDataSource: UICollectionViewDiffableDataSource<AppSection, SocialApp> = .init(collectionView: self.collectionView) { (collectionView, indexPath, socialApp) -> UICollectionViewCell? in
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! AppsHeaderCell
-		cell.app = socialApp
-		
-		return cell
-	}
-	
-	
-	
 	private func setupDiffableDataSource() {
 		// adding data
 //		var snapshot = diffableDataSource.snapshot()
@@ -59,11 +70,38 @@ class AppsCompositionalController: UICollectionViewController {
 //
 //		diffableDataSource.apply(snapshot)
 		
+		diffableDataSource.supplementaryViewProvider = .some({ collectionView, elementKind, indexPath in
+			let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: self.headerId, for: indexPath) as! CompositionalHeader
+			
+			let snapshot = self.diffableDataSource.snapshot()
+			let object = self.diffableDataSource.itemIdentifier(for: indexPath)
+			let section = snapshot.sectionIdentifier(containingItem: object!)!
+			
+			if section == .topFree {
+				header.label.text = "Top Free Apps"
+			} else {
+				header.label.text = "Top Paid Apps"
+			}
+			
+			return header
+		})
+		
+		var snapshot = self.diffableDataSource.snapshot()
 		Service.shared.fetchSocialApps { socialApps, err in
-			var snapshot = self.diffableDataSource.snapshot()
 			snapshot.appendSections([.topSocial])
 			snapshot.appendItems(socialApps ?? [], toSection: .topSocial)
 			self.diffableDataSource.apply(snapshot)
+			
+			Service.shared.fetchTopFreeApps { appGroup, err in
+				snapshot.appendSections([.topFree])
+				snapshot.appendItems(appGroup?.feed.results ?? [], toSection: .topFree)
+				self.diffableDataSource.apply(snapshot)
+			}
+			Service.shared.fetchTopPaidApps { appGroup, err in
+				snapshot.appendSections([.topPaid])
+				snapshot.appendItems(appGroup?.feed.results ?? [], toSection: .topPaid)
+				self.diffableDataSource.apply(snapshot)
+			}
 		}
 	}
 	
@@ -185,19 +223,19 @@ class AppsCompositionalController: UICollectionViewController {
 	}
 	
 	
-	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CompositionalHeader
-		var title: String?
-		
-		if indexPath.section == 1 {
-			title = freeApps?.feed.title
-		} else if indexPath.section == 2 {
-			title = paidApps?.feed.title
-		}
-		header.label.text = title
-		
-		return header
-	}
+//	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CompositionalHeader
+//		var title: String?
+//		
+//		if indexPath.section == 1 {
+//			title = freeApps?.feed.title
+//		} else if indexPath.section == 2 {
+//			title = paidApps?.feed.title
+//		}
+//		header.label.text = title
+//		
+//		return header
+//	}
 	
 	
 	static func topSection() -> NSCollectionLayoutSection {
@@ -217,22 +255,6 @@ class AppsCompositionalController: UICollectionViewController {
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-	
-	class CompositionalHeader: UICollectionReusableView {
-		let label = UILabel(text: "Editor's Choise Apps", font: .boldSystemFont(ofSize: 24))
-		
-		override init(frame: CGRect) {
-			super.init(frame: frame)
-			
-			addSubview(label)
-			label.fillSuperview()
-		}
-		
-		required init?(coder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
 	}
 }
 
