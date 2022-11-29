@@ -13,6 +13,7 @@ class AppsCompositionalController: UICollectionViewController {
 		case topSocial
 		case topFree
 		case topPaid
+		case podcasts
 	}
 	
 	fileprivate let cellId = "cellId"
@@ -54,6 +55,9 @@ class AppsCompositionalController: UICollectionViewController {
 		collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: smallCellId)
 		collectionView.register(CompositionalHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
 		
+		collectionView.refreshControl = UIRefreshControl()
+		collectionView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+		
 //		fetchApps()
 		
 		setupDiffableDataSource()
@@ -87,6 +91,11 @@ class AppsCompositionalController: UICollectionViewController {
 			return header
 		})
 		
+		fetchData()
+	}
+	
+	
+	fileprivate func fetchData() {
 		var snapshot = self.diffableDataSource.snapshot()
 		Service.shared.fetchSocialApps { socialApps, err in
 			snapshot.appendSections([.topSocial])
@@ -107,7 +116,7 @@ class AppsCompositionalController: UICollectionViewController {
 	}
 	
 	
-	@objc func handleGet(button: UIView) {
+	@objc fileprivate func handleGet(button: UIView) {
 		var superview = button.superview
 		// to reach the parent cell of the get button
 		while superview != nil {
@@ -121,6 +130,17 @@ class AppsCompositionalController: UICollectionViewController {
 			}
 			superview = superview?.superview
 		}
+	}
+	
+	
+	@objc fileprivate func handleRefresh() {
+		collectionView.refreshControl?.endRefreshing()
+		
+		var snapshot = diffableDataSource.snapshot()
+		snapshot.deleteSections([.topSocial, .topFree, .topPaid])
+		diffableDataSource.apply(snapshot)
+		
+		fetchData()
 	}
 	
 	

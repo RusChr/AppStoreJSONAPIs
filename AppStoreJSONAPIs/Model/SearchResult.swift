@@ -12,7 +12,7 @@ struct SearchResult: Decodable {
 	let results: [Result]
 }
 
-struct Result: Decodable {
+struct Result: Decodable, Hashable {
 	let trackId: Int
 	let trackName: String
 	let primaryGenreName: String
